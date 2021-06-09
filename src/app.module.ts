@@ -9,6 +9,8 @@ import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Pri_Usu_Usuarios } from './ficha/entities/pri_usu_usuarios.entity';
 import { FichaModule } from './ficha/ficha.module';
+import { Pri_Emp_Empleado_V } from './ficha/entities/pri_emp_empleado_v.entity';
+import { Pri_Usu_Empleados } from './ficha/entities/pri_usuemp.entity';
 //import { VersionModule } from './version/version.module';
 //+++++++++++++++
 
@@ -25,11 +27,11 @@ import { FichaModule } from './ficha/ficha.module';
       schema: 'SISPRI',
       // entities: [__dirname + './**/**/*entity{​​​​.ts,.js}​​​​'],
       //entities: [join(__dirname, './**/**/*entity{.ts,.js}')],
-      entities: [Pri_Usu_Usuarios],
+      entities: [Pri_Usu_Usuarios, Pri_Emp_Empleado_V, Pri_Usu_Empleados],
       //autoLoadEntities:true,
       // synchronize: true,
     }),
-    FichaModule],
+    FichaModule,],
   controllers: [AppController],
   providers: [AppService],
 })

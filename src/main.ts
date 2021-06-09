@@ -1,3 +1,4 @@
+/*
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import * as fs from 'fs';
@@ -28,6 +29,27 @@ async function bootstrap() {
   );
 
   app.enableCors();
+  await app.listen(3002);
+}
+bootstrap();
+*/
+
+import { initSwagger } from './app.swagger';
+import { ValidationPipe } from '@nestjs/common';
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  
+  initSwagger(app);
+  
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+    }),
+  );
+
   await app.listen(3002);
 }
 bootstrap();

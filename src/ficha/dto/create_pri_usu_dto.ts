@@ -7,7 +7,7 @@ export class Create_Pri_Usu_Dto {
 @IsString()
 @IsNotEmpty()
 @ApiProperty({ description: 'CODIGO DE LA COMPANIA', type: String, })
-usuCodcia: string;
+usuCodcia?: string;
 
 @IsString()
 @IsNotEmpty()
@@ -15,7 +15,7 @@ usuCodcia: string;
 usuUsuario?: string;
 
 @IsNumber()
-@IsNotEmpty()
+@IsOptional()
 @ApiProperty({ description: 'CODIGO DE LA UNIDAD A LA QUE PERTENECE EL USUARIO', type: Number, })
 usuCoduni?: number;
 
