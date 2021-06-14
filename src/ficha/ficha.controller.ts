@@ -120,5 +120,15 @@ export class FichaController {
         return this.fichaService.findAllUsuEmp();
     }  
 
-
+/*
+    //------------ GET - OBTIENE TODOS LOS REGISTROS DEL CATALOGO A PARTIR DEL BODY
+    @ApiHeader({
+        name: 'Controlador: @Get()',
+        description: 'OBTIENE TODOS LOS REGISTROS DEL CATALOGO DE USUARIOS A PARTIR DEL BODY',
+    })
+    @Get('/usuemp/')
+    findAllEntiti_prueba() {
+        return this.fichaService.findAllEntiti_prueba();
+    }  
+*/
 }

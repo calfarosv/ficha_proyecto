@@ -1,15 +1,16 @@
 
-import { Column, Entity, Index, JoinColumn, ManyToOne, OneToOne } from "typeorm";
-import { Pri_Usu_Usuarios } from "./pri_usu_usuarios.entity";
+import { Column, Entity, Index, JoinColumn, ManyToOne, OneToOne, PrimaryColumn } from "typeorm";
 
 @Index("PRI_USU_PK", ["empCodcia", "empCodcel"], { unique: true })
 @Entity("PRI_EMP_EMPLEADO_V")
 
 export class Pri_Emp_Empleado_V {
 
+    @PrimaryColumn()
     @Column("varchar2", { primary: true, name: "EMP_CODCIA", length: 3 })
     empCodcia?: string;
 
+    @PrimaryColumn()
     @Column("varchar2", { primary: true, name: "EMP_CODCEL", length: 8 })
     empCodcel?: string;
 
@@ -37,12 +38,10 @@ export class Pri_Emp_Empleado_V {
     @Column("varchar2", { name: "EMP_CORREO", length: 25 })
     empCorreo?: string;
 
-    @Column("varchar2", {name: "EMP_CODCEL", length: 8 })
-    empCodcel2?: string;
     /*
     @OneToOne(() => Pri_Usu_Usuarios)
     @JoinColumn({ name: "empCodcel2" })
     usuario: Pri_Usu_Usuarios;
-*/
+    */
 
 }
