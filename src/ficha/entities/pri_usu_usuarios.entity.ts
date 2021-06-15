@@ -1,11 +1,11 @@
 
 import { Column, Entity, Index, JoinColumn, OneToOne, PrimaryColumn } from "typeorm";
-import { Pri_Emp_Empleado_V } from "./pri_emp_empleado_v.entity";
+import { Pri_Emp_Empleado_V_Entity } from "./pri_emp_empleado_v.entity";
 
 @Index("PRI_USU_PK", ["usuCodcia", "usuUsuario"], { unique: true })
 @Entity("PRI_USU_USUARIOS")
 
-export class Pri_Usu_Usuarios {
+export class Pri_Usu_Usuarios_Entity {
 
     @PrimaryColumn()
     @Column("varchar2", { primary: true, name: "USU_CODCIA", length: 3 })
@@ -26,11 +26,12 @@ export class Pri_Usu_Usuarios {
 
     @Column("varchar2", { name: "USU_TIPO", length: 3 })
     usuTipo?: string;
-
+/*
     //@OneToOne(()=> Pri_Emp_Empleado_V, {eager: true}) //lazy //eager
-    @OneToOne(() => Pri_Emp_Empleado_V) //lazy //eager
+    @OneToOne(() => Pri_Emp_Empleado_V_Entity) //lazy //eager
     @JoinColumn({ name: "USU_CODCEL", referencedColumnName: "empCodcel" })
     @JoinColumn({ name: "USU_CODCIA", referencedColumnName: "empCodcia" })
     //@JoinColumn([{ name: 'USU_CODCIA' }, { name: 'USU_CODCEL' }])
-    usuario: Pri_Emp_Empleado_V;
+    usuario: Pri_Emp_Empleado_V_Entity;
+    */
 }

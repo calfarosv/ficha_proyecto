@@ -4,7 +4,7 @@ import { Column, Entity, Index, JoinColumn, ManyToOne, OneToOne, PrimaryColumn }
 @Index("PRI_USU_PK", ["empCodcia", "empCodcel"], { unique: true })
 @Entity("PRI_EMP_EMPLEADO_V")
 
-export class Pri_Emp_Empleado_V {
+export class Pri_Emp_Empleado_V_Entity {
 
     @PrimaryColumn()
     @Column("varchar2", { primary: true, name: "EMP_CODCIA", length: 3 })

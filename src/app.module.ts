@@ -7,9 +7,11 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Pri_Usu_Usuarios } from './ficha/entities/pri_usu_usuarios.entity';
 import { FichaModule } from './ficha/ficha.module';
-import { Pri_Emp_Empleado_V } from './ficha/entities/pri_emp_empleado_v.entity';
+import { Pri_Usu_Usuarios_Entity } from './ficha/entities/pri_usu_usuarios.entity';
+import { Pri_Emp_Empleado_V_Entity } from './ficha/entities/pri_emp_empleado_v.entity';
+import { Pri_Uni_Unidad_Entity } from './ficha/entities/pri_uni_unidad.entity';
+
 //import { VersionModule } from './version/version.module';
 //+++++++++++++++
 
@@ -26,7 +28,7 @@ import { Pri_Emp_Empleado_V } from './ficha/entities/pri_emp_empleado_v.entity';
       schema: 'SISPRI',
       // entities: [__dirname + './**/**/*entity{​​​​.ts,.js}​​​​'],
       //entities: [join(__dirname, './**/**/*entity{.ts,.js}')],
-      entities: [Pri_Usu_Usuarios, Pri_Emp_Empleado_V],
+      entities: [Pri_Usu_Usuarios_Entity, Pri_Emp_Empleado_V_Entity, Pri_Uni_Unidad_Entity],
       //autoLoadEntities:true,
       // synchronize: true,
     }),
