@@ -26,12 +26,21 @@ export class Pri_Usu_Usuarios_Entity {
 
     @Column("varchar2", { name: "USU_TIPO", length: 3 })
     usuTipo?: string;
-/*
+
     //@OneToOne(()=> Pri_Emp_Empleado_V, {eager: true}) //lazy //eager
-    @OneToOne(() => Pri_Emp_Empleado_V_Entity) //lazy //eager
-    @JoinColumn({ name: "USU_CODCEL", referencedColumnName: "empCodcel" })
-    @JoinColumn({ name: "USU_CODCIA", referencedColumnName: "empCodcia" })
-    //@JoinColumn([{ name: 'USU_CODCIA' }, { name: 'USU_CODCEL' }])
+    //lazy //eager
+    //{ eager: true }
+    //{ lazy: true }    
+
+    @OneToOne
+        (
+            () => Pri_Emp_Empleado_V_Entity
+        )
+    @JoinColumn
+        ([
+            { name: "USU_CODCEL", referencedColumnName: "empCodcel" },
+            { name: "USU_CODCIA", referencedColumnName: "empCodcia" },
+        ])
     usuario: Pri_Emp_Empleado_V_Entity;
-    */
+
 }

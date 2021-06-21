@@ -1,10 +1,10 @@
 
 import { Column, Entity, Index, PrimaryColumn } from "typeorm";
 
-@Index("PRI_UNI_PK", ["uniCodcia", "uniCodigo"], { unique: true })
-@Entity("PRI_UNI_UNIDAD_V")
+@Index("PLA_UNI_PK", ["uniCodcia", "uniCodigo"], { unique: true })
+@Entity("PLA_UNI_UNIDAD")
 
-export class Pri_Uni_Unidad_Entity {
+export class Pla_Uni_Unidad_Entity {
 
     @PrimaryColumn()
     @Column("varchar2", { primary: true, name: "UNI_CODCIA", length: 3 })

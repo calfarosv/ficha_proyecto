@@ -1,14 +1,14 @@
 import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { ApiHeader } from '@nestjs/swagger';
 import { InjectRepository } from '@nestjs/typeorm';
-import { In, Repository } from 'typeorm';
+import { Pla_Uni_Unidad_Entity } from 'src/apoyo/entities/pla_uni_unidad_entity';
+import { Repository } from 'typeorm';
 import { Create_Pri_Usu_Dto } from './dto/create_pri_usu_dto';
 import { Edit_Pri_Usu_Dto } from './dto/edit_pri_usu_dto';
-import { Pri_Uni_Unidad_Entity } from './entities/pri_uni_unidad.entity';
 
 import { Pri_Emp_Empleado_V_Entity } from './entities/pri_emp_empleado_v.entity';
+import { Pri_Fic_Ficha_Entity } from './entities/pri_fic_ficha_entity';
 import { Pri_Usu_Usuarios_Entity } from './entities/pri_usu_usuarios.entity';
-
 
 @Injectable()
 export class FichaService {
@@ -16,58 +16,12 @@ export class FichaService {
     constructor(
         @InjectRepository(Pri_Usu_Usuarios_Entity) private usuariosRepository: Repository<Pri_Usu_Usuarios_Entity>,
         @InjectRepository(Pri_Emp_Empleado_V_Entity) private empleadosRepository: Repository<Pri_Emp_Empleado_V_Entity>,
-        @InjectRepository(Pri_Uni_Unidad_Entity) private unidadesRepository: Repository<Pri_Uni_Unidad_Entity>,
+        @InjectRepository(Pri_Fic_Ficha_Entity) private fichasRepository: Repository<Pri_Fic_Ficha_Entity>,
         //@InjectRepository(Pri_Usu_Empleados) private usuempRepository: Repository<Pri_Usu_Empleados>,
         //private readonly usuariosService: UsuariosService,
         //private readonly unidadService: UnidadService
     ) { }
 
-    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    // ESTRUCTURAS DE APOYO
-    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
-
-    @ApiHeader({
-        name: 'Servicio: buscaTodos_Usu(): Promise<Pri_Usu_Usuarios_Entity[]>',
-        description: 'BUSCA TODOS LOS REGISTROS DEL MAESTRO DE USUARIOS',
-    })
-    async buscaTodas_Uni(): Promise<Pri_Uni_Unidad_Entity[]> {
-        const register = await this.unidadesRepository.find(
-            {
-                order: {
-                    uniCodcia: 'ASC',
-                    uniNombre: 'ASC'
-                }
-            }
-        );
-        if (!register)
-            throw new NotFoundException('No se ha encontrado ningún registro (buscaTodas_Uni)');
-        else
-            return register;
-    }
-
-    //-------------------------------------------------------------------------------------------------------------
-
-    @ApiHeader({
-        name: 'Servicio: busca_usuarios_por_llave(v_codcia: string, v_usuario: string): Promise<Pri_Usu_Usuarios_Entity>',
-        description: 'Busca registro a partir de parametros enviados en el URL',
-    })
-    async busca_unidades_por_llave(v_codcia: string, v_coduni: number): Promise<Pri_Uni_Unidad_Entity> {
-        const register = await this.unidadesRepository.findOne(
-            {
-                uniCodcia: v_codcia,
-                uniCodigo: v_coduni
-            }
-        );
-
-        if (!register)
-            throw new HttpException('No existen registros para los parametros definidos en la consulta - (busca_unidades_por_llave)', HttpStatus.FORBIDDEN);
-        else
-            return register;
-    }
-
-    //-------------------------------------------------------------------------------------------------------------
 
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -195,7 +149,7 @@ export class FichaService {
     }
 
     //-------------------------------------------------------------------------------------------------------------
-    
+
     //------------ CREA REGISTRO
     @ApiHeader({
         name: 'Servicio: createCat(dto: Create_Mjucat_Dto): Promise<Mch_Mjc_Cat>',
@@ -233,7 +187,7 @@ export class FichaService {
         const modelToEdit = Object.assign(toUpdate, dto);
         return await this.usuariosRepository.save(modelToEdit);
         //return toUpdate;
-    }    
+    }
 
     //------------ ELIMINA UN REGISTRO
     @ApiHeader({
@@ -252,7 +206,7 @@ export class FichaService {
         else {
             throw new HttpException('NO SE PUEDE ELIMINAR - No existe el registro - (EliminaUsuario)', HttpStatus.FORBIDDEN);
         }
-    }    
+    }
 
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -581,7 +535,143 @@ export class FichaService {
     }
 
 
+    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    // FICHAS
+    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
+    @ApiHeader({
+        name: 'Servicio: buscaTodas_Fic(): Promise<Pri_Fic_Ficha_Entity[]>',
+        description: 'BUSCA TODOS LOS REGISTROS DEL ENCABEZADO DE FICHAS',
+    })
+    async buscaTodas_Fic(): Promise<Pri_Fic_Ficha_Entity[]> {
+        const register = await this.fichasRepository.find(
+            {
+                order: {
+                    ficCodigo: 'ASC',
+                    ficVersion: 'ASC'
+                }
+            }
+        );
+        if (!register)
+            throw new NotFoundException('No se ha encontrado ningún registro (buscaTodas_Fic)');
+        else
+            return register;
+    }
+
+    //-------------------------------------------------------------------------------------------------------------
+
+    @ApiHeader({
+        name: 'Servicio: buscaTodas_FicDet()',
+        description: 'BUSCA TODOS LOS REGISTROS DEL ENCABEZADO DE FICHAS CON DETALLE INCLUIDO',
+    })
+    //async busca_Fic(): Promise<Pri_Fic_Ficha_Entity[]> {
+    async buscaTodas_FicDet() {
+
+        const register = await this.fichasRepository.createQueryBuilder()
+            .leftJoinAndSelect("Pri_Fic_Ficha_Entity.detalles", "v_fid")
+            .getMany();
+
+        if (!register) {
+            throw new HttpException('No se encontraron datos - (buscaTodas_FicDet)', HttpStatus.FORBIDDEN);
+        }
+        else
+            return register;
+    }
+
+    //-------------------------------------------------------------------------------------------------------------
+
+    @ApiHeader({
+        name: 'Servicio: buscaTodos_UsuEmp()',
+        description: 'BUSCA TODOS LOS REGISTROS DE LA COMBINACION USUARIOS/EMPLEADOS',
+    })
+    //async findAll_UsuEmp(): Promise<Pri_Usu_Usuarios_Entity[]> {
+    async busca_fichas_por_llave(v_codfic: number, v_codver: number) {
+
+        const register = await this.fichasRepository.createQueryBuilder()
+            .select("Pri_Fic_Ficha_Entity.ficCodigo", "ficCodigo")
+            .addSelect("Pri_Fic_Ficha_Entity.ficVersion", "ficVersion")
+            .addSelect("Pri_Fic_Ficha_Entity.ficNombre", "ficNombre")
+            .addSelect("Pri_Fic_Ficha_Entity.ficDescripcion", "ficDescripcion")
+            .addSelect("Pri_Fic_Ficha_Entity.ficCoduniSol", "ficCoduniSol")
+            .addSelect("Pri_Fic_Ficha_Entity.ficCoduniEje", "ficCoduniEje")
+            .addSelect("Pri_Fic_Ficha_Entity.ficCodcelRes", "ficCodcelRes")
+            .addSelect("Pri_Fic_Ficha_Entity.ficFormulSn", "ficFormulSn")
+            .addSelect("Pri_Fic_Ficha_Entity.ficForFepini", "ficForFepini")
+            .addSelect("Pri_Fic_Ficha_Entity.ficForFepfin", "ficForFepfin")
+            .addSelect("Pri_Fic_Ficha_Entity.ficForFerini", "ficForFerini")
+            .addSelect("Pri_Fic_Ficha_Entity.ficForFerfin", "ficForFerfin")
+            .addSelect("Pri_Fic_Ficha_Entity.ficAmbienSn", "ficAmbienSn")
+            .addSelect("Pri_Fic_Ficha_Entity.ficAmbFepini", "ficAmbFepini")
+            .addSelect("Pri_Fic_Ficha_Entity.ficAmbFepfin", "ficAmbFepfin")
+            .addSelect("Pri_Fic_Ficha_Entity.ficAmbFerini", "ficAmbFerini")
+            .addSelect("Pri_Fic_Ficha_Entity.ficAmbFerfin", "ficAmbFerfin")
+            .addSelect("Pri_Fic_Ficha_Entity.ficContraSn", "ficContraSn")
+            .addSelect("Pri_Fic_Ficha_Entity.ficConFepini", "ficConFepini")
+            .addSelect("Pri_Fic_Ficha_Entity.ficConFepfin", "ficConFepfin")
+            .addSelect("Pri_Fic_Ficha_Entity.ficConFerini", "ficConFerini")
+            .addSelect("Pri_Fic_Ficha_Entity.ficConFerfin", "ficConFerfin")
+            .addSelect("Pri_Fic_Ficha_Entity.ficEjecutSn", "ficEjecutSn")
+            .addSelect("Pri_Fic_Ficha_Entity.ficEjeFepini", "ficEjeFepini")
+            .addSelect("Pri_Fic_Ficha_Entity.ficEjeFepfin", "ficEjeFepfin")
+            .addSelect("Pri_Fic_Ficha_Entity.ficEjeFerini", "ficEjeFerini")
+            .addSelect("Pri_Fic_Ficha_Entity.ficEjeFerfin", "ficEjeFerfin")
+            .addSelect("Pri_Fic_Ficha_Entity.ficLiquidSn", "ficLiquidSn")
+            .addSelect("Pri_Fic_Ficha_Entity.ficLiqFepini", "ficLiqFepini")
+            .addSelect("Pri_Fic_Ficha_Entity.ficLiqFepfin", "ficLiqFepfin")
+            .addSelect("Pri_Fic_Ficha_Entity.ficLiqFerini", "ficLiqFerini")
+            .addSelect("Pri_Fic_Ficha_Entity.ficLiqFerfin", "ficLiqFerfin")
+            .addSelect("Pri_Fic_Ficha_Entity.ficEsptecSn", "ficEsptecSn")
+            .addSelect("Pri_Fic_Ficha_Entity.ficEsptecPor", "ficEsptecPor")
+            .addSelect("Pri_Fic_Ficha_Entity.ficFortecSn", "ficFortecSn")
+            .addSelect("Pri_Fic_Ficha_Entity.ficFortecPor", "ficFortecPor")
+            .addSelect("Pri_Fic_Ficha_Entity.ficPlanosSn", "ficPlanosSn")
+            .addSelect("Pri_Fic_Ficha_Entity.ficPlanosPor", "ficPlanosPor")
+            .addSelect("Pri_Fic_Ficha_Entity.ficPresupSn", "ficPresupSn")
+            .addSelect("Pri_Fic_Ficha_Entity.ficPresupPor", "ficPresupPor")
+            .addSelect("Pri_Fic_Ficha_Entity.ficBaslicSn", "ficBaslicSn")
+            .addSelect("Pri_Fic_Ficha_Entity.ficBaslicPor", "ficBaslicPor")
+            .addSelect("Pri_Fic_Ficha_Entity.ficForambSn", "ficForambSn")
+            .addSelect("Pri_Fic_Ficha_Entity.ficForambPor", "ficForambPor")
+            .addSelect("Pri_Fic_Ficha_Entity.ficCatambSn", "ficCatambSn")
+            .addSelect("Pri_Fic_Ficha_Entity.ficCatambPor", "ficCatambPor")
+            .addSelect("Pri_Fic_Ficha_Entity.ficEstimpSn", "ficEstimpSn")
+            .addSelect("Pri_Fic_Ficha_Entity.ficEstimpPor", "ficEstimpPor")
+            .addSelect("Pri_Fic_Ficha_Entity.ficPerambSn", "ficPerambSn")
+            .addSelect("Pri_Fic_Ficha_Entity.ficPerambPor", "ficPerambPor")
+            .addSelect("Pri_Fic_Ficha_Entity.ficPerconSn", "ficPerconSn")
+            .addSelect("Pri_Fic_Ficha_Entity.ficPerconPor", "ficPerconPor")
+            .addSelect("Pri_Fic_Ficha_Entity.ficObservFic", "ficObservFic")
+            .addSelect("Pri_Fic_Ficha_Entity.ficFechaVer", "ficFechaVer")
+            .addSelect("Pri_Fic_Ficha_Entity.ficEstadoVer", "ficEstadoVer")
+            .addSelect("Pri_Fic_Ficha_Entity.ficUsuarioVer", "ficUsuarioVer")
+            .addSelect("Pri_Fic_Ficha_Entity.ficObservVer", "ficObservVer")
+            .addSelect("Pri_Fic_Ficha_Entity.ficUsuarioCrea", "ficUsuarioCrea")
+            .addSelect("Pri_Fic_Ficha_Entity.ficFecCrea", "ficFecCrea")
+            .addSelect("Pri_Fic_Ficha_Entity.ficUsuarioMod", "ficUsuarioMod")
+            .addSelect("Pri_Fic_Ficha_Entity.ficFecMod", "ficFecMod")
+            //
+            .addSelect("Pla_Uni_Unidad_Entity.uniNombre", "uniNombre_sol")
+            .addSelect("Pla_Uni_Unidad_Entity_b.uniNombre", "uniNombre_eje")
+            .addSelect("Pri_Emp_Empleado_V_Entity.empNombre", "empNombre")
+            .where("Pri_Fic_Ficha_Entity.ficCodigo = :par_codfic and Pri_Fic_Ficha_Entity.ficVersion = :par_codver",
+                {
+                    par_codfic: v_codfic,
+                    par_codver: v_codver
+                })
+            .leftJoin(Pri_Emp_Empleado_V_Entity, "Pri_Emp_Empleado_V_Entity", "Pri_Fic_Ficha_Entity.ficCodcelRes = Pri_Emp_Empleado_V_Entity.empCodcel")
+            .leftJoin(Pla_Uni_Unidad_Entity, "Pla_Uni_Unidad_Entity", "Pri_Fic_Ficha_Entity.ficCoduniSol = Pla_Uni_Unidad_Entity.uniCodigo")
+            .leftJoin(Pla_Uni_Unidad_Entity, "Pla_Uni_Unidad_Entity_b", "Pri_Fic_Ficha_Entity.ficCoduniEje = Pla_Uni_Unidad_Entity_b.uniCodigo")
+            .getRawMany();
+        if (!register) {
+            throw new HttpException('No se encontraron datos - (busca_fichas_por_llave)', HttpStatus.FORBIDDEN);
+        }
+        else
+            return register;
+    }
+
+    //-------------------------------------------------------------------------------------------------------------
 
 
 

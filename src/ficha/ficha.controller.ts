@@ -11,34 +11,6 @@ export class FichaController {
     constructor(private fichaService: FichaService) {
     }
 
-    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    // ESTRUCTURAS DE APOYO
-    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    
-
-    @ApiHeader({
-        name: 'Controlador: @Get(/unidades/)',
-        description: 'OBTIENE TODOS LOS REGISTROS A PARTIR DEL BODY',
-    })
-    @Get('/unidades/')
-    buscaTodos_Uni() {
-        return this.fichaService.buscaTodas_Uni();
-    }
-    //-------------------------------------------------------------------------------------------------------------
-    @ApiHeader({
-        name: 'Controlador: @Get(/unidades/by_key/:uni_codcia/:uni_codigo)',
-        description: 'Obtiene registro a partir de parametros enviados en el URL',
-    })
-    @Get('/unidades/by_key/:uni_codcia/:uni_codigo')
-    async obtiene_unidades_por_llave(
-        @Param('uni_codcia') v_codcia: string,
-        @Param('uni_codigo') v_coduni: number
-    ) {
-        const data = await this.fichaService.busca_unidades_por_llave(v_codcia, v_coduni);
-        return data;
-    }
-
 
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -196,8 +168,8 @@ export class FichaController {
         @Param('emp_coduni') v_coduni: number,
         //@Param('usu_codcel') v_codcel: string
     ) {
-        console.log('by_ciauni_v_codcia: ', v_codcia);
-        console.log('by_ciauni_v_codcel: ', v_coduni);
+        //console.log('by_ciauni_v_codcia: ', v_codcia);
+        //console.log('by_ciauni_v_codcel: ', v_coduni);
         //let v_fecini: Date;
         //let v_fecfin: Date;
         //let v_coduni: number = null;
@@ -333,5 +305,48 @@ export class FichaController {
     }
 
     //**************************//
+
+   //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    // FICHA
+    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++    
+
+    @ApiHeader({
+        name: 'Controlador: @Get()',
+        description: 'OBTIENE TODOS LOS REGISTROS',
+    })
+    @Get()
+    buscaTodas_Fic() {
+        return this.fichaService.buscaTodas_Fic();
+    }
+
+    //-------------------------------------------------------------------------------------------------------------
+    
+    @ApiHeader({
+        name: 'Controlador: @Get(/con_detalle/)',
+        description: 'OBTIENE TODOS LOS REGISTROS CON DETALLE INCLUIDO',
+    })
+    @Get('/con_detalle/')
+    busca_Fic() {
+        return this.fichaService.buscaTodas_FicDet();
+    }
+
+    //-------------------------------------------------------------------------------------------------------------
+
+    @ApiHeader({
+        name: 'Controlador: @Get(/usuarios/by_key/:usu_codcia/:usu_usuario)',
+        description: 'Obtiene registro a partir de parametros enviados en el URL',
+    })
+    @Get('/by_key/:fic_codigo/:fic_version')
+    async obtiene_fichas_por_llave(
+        @Param('fic_codigo') v_codfic: number,
+        @Param('fic_version') v_codver: number
+    ) {
+        console.log('v_codfic: ', v_codfic);
+        console.log('v_codver: ', v_codver);
+        const data = await this.fichaService.busca_fichas_por_llave(v_codfic, v_codver);
+        return data;
+    }    
 
 }

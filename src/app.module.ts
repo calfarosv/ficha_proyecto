@@ -10,32 +10,34 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { FichaModule } from './ficha/ficha.module';
 import { Pri_Usu_Usuarios_Entity } from './ficha/entities/pri_usu_usuarios.entity';
 import { Pri_Emp_Empleado_V_Entity } from './ficha/entities/pri_emp_empleado_v.entity';
-import { Pri_Uni_Unidad_Entity } from './ficha/entities/pri_uni_unidad.entity';
+import { Pla_Uni_Unidad_Entity } from './apoyo/entities/pla_uni_unidad_entity';
 
 //import { VersionModule } from './version/version.module';
+import { ApoyoModule } from './apoyo/apoyo.module';
+import { Pri_Fic_Ficha_Entity } from './ficha/entities/pri_fic_ficha_entity';
+import { Pri_Fid_Ficha_Detalle_Entity } from './ficha/entities/pri_fid_ficha_detalle_entity';
 //+++++++++++++++
 
 @Module({
   imports: [AuthModule,UsersModule,
     TypeOrmModule.forRoot({
       type: 'oracle',
-      //host: 'desa.cel.gob.sv',
       connectString: 'desa.cel.gob.sv:1521/DESA',
       port: 1521,
       username: 'WSISPRI',
       password: '4pl1c4c10n3sw3b',
       database: 'desa',
-      schema: 'SISPRI',
-      // entities: [__dirname + './**/**/*entity{​​​​.ts,.js}​​​​'],
-      //entities: [join(__dirname, './**/**/*entity{.ts,.js}')],
-      entities: [Pri_Usu_Usuarios_Entity, Pri_Emp_Empleado_V_Entity, Pri_Uni_Unidad_Entity],
-      //autoLoadEntities:true,
-      // synchronize: true,
+      schema: '',
+      entities: [Pri_Usu_Usuarios_Entity, Pri_Emp_Empleado_V_Entity, Pla_Uni_Unidad_Entity, 
+                 Pri_Fic_Ficha_Entity, Pri_Fid_Ficha_Detalle_Entity],
     }),
-    FichaModule,],
+    FichaModule,
+    ApoyoModule,],
   controllers: [AppController],
   providers: [AppService],
 })
+
+
 export class AppModule { }
 
 /*
