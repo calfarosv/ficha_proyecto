@@ -10,23 +10,24 @@ export class Pri_Usu_Usuarios_Entity {
     @PrimaryColumn()
     @Column("varchar2", { primary: true, name: "USU_CODCIA", length: 3 })
     usuCodcia?: string;
-
+    //-----------------------------------------------------------------------------------------
     @PrimaryColumn()
     @Column("varchar2", { primary: true, name: "USU_USUARIO", length: 30 })
     usuUsuario?: string;
-
+    //-----------------------------------------------------------------------------------------
     @Column("number", { name: "USU_CODUNI", precision: 5, scale: 0, })
     usuCoduni?: number;
-
+    //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "USU_CODCEL", length: 7 })
     usuCodcel?: string;
-
+    //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "USU_EMAIL", length: 100 })
     usuEmail?: string;
-
+    //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "USU_TIPO", length: 3 })
     usuTipo?: string;
-
+    //-----------------------------------------------------------------------------------------
+    
     //@OneToOne(()=> Pri_Emp_Empleado_V, {eager: true}) //lazy //eager
     //lazy //eager
     //{ eager: true }
