@@ -378,8 +378,8 @@ export class FichaController {
         @Param('fic_codigo') v_codfic: number,
         @Param('fic_version') v_codver: number
     ) {
-        console.log('v_codfic: ', v_codfic);
-        console.log('v_codver: ', v_codver);
+        //console.log('v_codfic: ', v_codfic);
+        //console.log('v_codver: ', v_codver);
         const data: any[] = await this.fichaService.busca_fichas_por_llave(v_codfic, v_codver);
         if (data.length === 1) {
             return data[0];
