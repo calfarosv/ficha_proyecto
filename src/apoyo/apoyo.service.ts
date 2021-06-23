@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestjs/common';
 import { ApiHeader } from '@nestjs/swagger';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { In, Repository } from 'typeorm';
 import { Pla_Uni_Unidad_Entity } from './entities/pla_uni_unidad_entity';
 
 @Injectable()
@@ -32,8 +32,12 @@ export class ApoyoService {
                 order: {
                     uniCodcia: 'ASC',
                     uniNombre: 'ASC'
-                }
-            }
+                },
+            where: {
+                uniCodcia: '001',
+                uniEstado: In(['A'])
+            },            
+        }
         );
         if (!register)
             throw new NotFoundException('No se ha encontrado ningún registro (buscaTodas_Uni)');

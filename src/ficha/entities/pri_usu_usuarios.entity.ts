@@ -1,6 +1,6 @@
 
 import { Column, Entity, Index, JoinColumn, OneToOne, PrimaryColumn } from "typeorm";
-import { Pri_Emp_Empleado_V_Entity } from "./pri_emp_empleado_v.entity";
+import { Pri_Emp_Empleado_V_Entity } from "./pri_emp_empleado_v_entity";
 
 @Index("PRI_USU_PK", ["usuCodcia", "usuUsuario"], { unique: true })
 @Entity("PRI_USU_USUARIOS")

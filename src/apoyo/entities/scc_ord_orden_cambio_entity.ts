@@ -1,80 +1,80 @@
 import { Type } from "class-transformer";
 import { Column, Entity, Index, PrimaryColumn } from "typeorm";
 
-@Index("SCC_ORD_PK", ["MtcCodcia", "MtcCorrelativo"], { unique: true })
+@Index("SCC_ORD_PK", ["ordCodcia", "ordCorrelativo"], { unique: true })
 @Entity("SCC_ORD_ORDEN_CAMBIO")
 
 export class Scc_Ord_Orden_Cambio_Entity {
 
     @PrimaryColumn()
     @Column("varchar2", { primary: true, name: "ORD_CODCIA", length: 3, })
-    OrdCodcia?: string;
+    ordCodcia?: string;
     //-----------------------------------------------------------------------------------------
     @PrimaryColumn()
     @Column("number", { primary: true, name: "ORD_CORRELATIVO", precision: 20, })
-    OrdCorrelativo?: number;
+    ordCorrelativo?: number;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "ORD_CTO_CORRELATIVO", precision: 20, })
-    OrdCtoCorrelativo?: number;
+    ordCtoCorrelativo?: number;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "ORD_ID", length: 20, })
-    OrdId?: string;
+    ordId?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "ORD_OBJETO", length: 1000, })
-    OrdObjeto?: string;
+    ordObjeto?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "ORD_NO_SESION", length: 20, })
-    OrdNoSesion?: string;
+    ordNoSesion?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "ORD_PTO_ACTA", length: 20, })
-    OrdPtoActa?: string;
+    ordPtoActa?: string;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "ORD_FEC_EMISION", })
-    OrdFecEmision?: Date;
+    ordFecEmision?: Date;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "ORD_FEC_VIGENCIA", })
-    OrdFecVigencia?: Date;
+    ordFecVigencia?: Date;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "ORD_FEC_APROB", })
-    OrdFecAprob?: Date;
+    ordFecAprob?: Date;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "ORD_TIPO", precision: 2, })
-    OrdTipo?: number;
+    ordTipo?: number;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "ORD_ESTADO", precision: 2, })
-    OrdEstado?: number;
+    ordEstado?: number;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "ORD_FEC_INI_PRORROGA", })
-    OrdFecIniProrroga?: Date;
+    ordFecIniProrroga?: Date;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "ORD_FEC_FIN_PRORROGA", })
-    OrdFecFinProrroga?: Date;
+    ordFecFinProrroga?: Date;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "ORD_FEC_REGISTRO", })
-    OrdFecRegistro?: Date;
+    ordFecRegistro?: Date;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "ORD_USRCREA", length: 30, })
-    OrdUsrcrea?: string;
+    ordUsrcrea?: string;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "ORD_FECCREA", })
-    OrdFeccrea?: Date;
+    ordFeccrea?: Date;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "ORD_USRMOD", length: 30, })
-    OrdUsrmod?: string;
+    ordUsrmod?: string;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "ORD_FECMOD", })
-    OrdFecmod?: Date;
+    ordFecmod?: Date;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "ORD_TIPO_CAMBIO", length: 3, })
-    OrdTipoCambio?: string;
+    ordTipoCambio?: string;
     //-----------------------------------------------------------------------------------------
 
 

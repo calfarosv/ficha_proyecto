@@ -1,205 +1,205 @@
 import { Type } from "class-transformer";
 import { Column, Entity, Index, PrimaryColumn } from "typeorm";
 
-@Index("PK_CEI_OCO_ORDENES_COMPRA", ["OcoCodcia", "OcoAnio", "OcoId"], { unique: true })
+@Index("PK_CEI_OCO_ORDENES_COMPRA", ["ocoCodcia", "ocoAnio", "ocoId"], { unique: true })
 @Entity("CEI_OCO_ORDENES_COMPRA")
 
 export class Cei_Oco_Ordenes_Compra_Entity {
 
     @PrimaryColumn()
     @Column("varchar2", { primary: true, name: "OCO_CODCIA", length: 3, })
-    OcoCodcia?: string;
+    ocoCodcia?: string;
     //-----------------------------------------------------------------------------------------
     @PrimaryColumn()
     @Column("number", { primary: true, name: "OCO_ANIO", precision: 4, })
-    OcoAnio?: number;
+    ocoAnio?: number;
     //-----------------------------------------------------------------------------------------
     @PrimaryColumn()
     @Column("number", { primary: true, name: "OCO_ID", precision: 6, })
-    OcoId?: number;
+    ocoId?: number;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "OCO_REQ_ID", precision: 14, })
-    OcoReqId?: number;
+    ocoReqId?: number;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "OCO_COT_ANIO", precision: 4, })
-    OcoCotAnio?: number;
+    ocoCotAnio?: number;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "OCO_COT_ID", precision: 16, })
-    OcoCotId?: number;
+    ocoCotId?: number;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "OCO_PRO_ID", precision: 14, })
-    OcoProId?: number;
+    ocoProId?: number;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "OCO_EAU_ID_AUT", precision: 4, })
-    OcoEauIdAut?: number;
+    ocoEauIdAut?: number;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "OCO_EMPCOD_AUT", length: 7, })
-    OcoEmpcodAut?: string;
+    ocoEmpcodAut?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "OCO_CODENT", length: 3, })
-    OcoCodent?: string;
+    ocoCodent?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "OCO_CODCTC", length: 2, })
-    OcoCodctc?: string;
+    ocoCodctc?: string;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "OCO_REQ_ANIO", precision: 4, })
-    OcoReqAnio?: number;
+    ocoReqAnio?: number;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "OCO_RSC_ID", precision: 10, })
-    OcoRscId?: number;
+    ocoRscId?: number;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "OCO_CODCDIR", length: 1, })
-    OcoCodcdir?: string;
+    ocoCodcdir?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "OCO_CODFVAR", length: 1, })
-    OcoCodfvar?: string;
+    ocoCodfvar?: string;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "OCO_SUBTOTAL", precision: 12, scale: 2, })
-    OcoSubtotal?: number;
+    ocoSubtotal?: number;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "OCO_RENTA", precision: 12, scale: 2, })
-    OcoRenta?: number;
+    ocoRenta?: number;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "OCO_IVA", precision: 12, scale: 2, })
-    OcoIva?: number;
+    ocoIva?: number;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "OCO_TOTAL", precision: 12, scale: 2, })
-    OcoTotal?: number;
+    ocoTotal?: number;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "OCO_DESTINADA", length: 3, })
-    OcoDestinada?: string;
+    ocoDestinada?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "OCO_COMENT_USO", length: 400, })
-    OcoComentUso?: string;
+    ocoComentUso?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "OCO_COMENT_ESTADO", length: 500, })
-    OcoComentEstado?: string;
+    ocoComentEstado?: string;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "OCO_FECHA_ELAB", })
-    OcoFechaElab?: Date;
+    ocoFechaElab?: Date;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "OCO_FECHA_AUTO", })
-    OcoFechaAuto?: Date;
+    ocoFechaAuto?: Date;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "OCO_FECHA_COMPRA", })
-    OcoFechaCompra?: Date;
+    ocoFechaCompra?: Date;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "OCO_ESTADO_ORDEN", length: 3, })
-    OcoEstadoOrden?: string;
+    ocoEstadoOrden?: string;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "OCO_FECHA_ESTADO", })
-    OcoFechaEstado?: Date;
+    ocoFechaEstado?: Date;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "OCO_TIP_RENTA", length: 3, })
-    OcoTipRenta?: string;
+    ocoTipRenta?: string;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "OCO_PORC_RENTA", precision: 3, scale: 2, })
-    OcoPorcRenta?: number;
+    ocoPorcRenta?: number;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "OCO_MES", precision: 2, })
-    OcoMes?: number;
+    ocoMes?: number;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "OCO_QUEDAN", length: 9, })
-    OcoQuedan?: string;
+    ocoQuedan?: string;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "OCO_FEC_QUEDAN", })
-    OcoFecQuedan?: Date;
+    ocoFecQuedan?: Date;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "OCO_CCF", length: 15, })
-    OcoCcf?: string;
+    ocoCcf?: string;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "OCO_FEC_CCF", })
-    OcoFecCcf?: Date;
+    ocoFecCcf?: Date;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "OCO_OFE_ID", length: 12, })
-    OcoOfeId?: string;
+    ocoOfeId?: string;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "OCO_CALIFICACION", precision: 4, scale: 2, })
-    OcoCalificacion?: number;
+    ocoCalificacion?: number;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "OCO_FECHA_CALI", })
-    OcoFechaCali?: Date;
+    ocoFechaCali?: Date;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "OCO_CTO_ID", precision: 20, })
-    OcoCtoId?: number;
+    ocoCtoId?: number;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "OCO_CONTRATO", length: 20, })
-    OcoContrato?: string;
+    ocoContrato?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "OCO_CONCEPTO_CONT", length: 1000, })
-    OcoConceptoCont?: string;
+    ocoConceptoCont?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "OCO_TIPO_DOC", length: 3, })
-    OcoTipoDoc?: string;
+    ocoTipoDoc?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "OCO_CODEMP_REC", length: 7, })
-    OcoCodempRec?: string;
+    ocoCodempRec?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "OCO_COMENT_RECEP", length: 100, })
-    OcoComentRecep?: string;
+    ocoComentRecep?: string;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "OCO_IVARET", precision: 12, scale: 2, })
-    OcoIvaret?: number;
+    ocoIvaret?: number;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "OCO_NVO_IVA", precision: 12, scale: 2, })
-    OcoNvoIva?: number;
+    ocoNvoIva?: number;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "OCO_NVO_RENTA", precision: 12, scale: 2, })
-    OcoNvoRenta?: number;
+    ocoNvoRenta?: number;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "OCO_NVO_IVARET", precision: 12, scale: 2, })
-    OcoNvoIvaret?: number;
+    ocoNvoIvaret?: number;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "OCO_NVO_PRECIO", precision: 12, scale: 2, })
-    OcoNvoPrecio?: number;
+    ocoNvoPrecio?: number;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "OCO_FEC_RETIRO", })
-    OcoFecRetiro?: Date;
+    ocoFecRetiro?: Date;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "OCO_FEC_RESGUARDO", })
-    OcoFecResguardo?: Date;
+    ocoFecResguardo?: Date;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "OCO_EMPTRANS", length: 7, })
-    OcoEmptrans?: string;
+    ocoEmptrans?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "OCO_DESREAL", length: 1, })
-    OcoDesreal?: string;
+    ocoDesreal?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "OCO_INFORMA", length: 1, })
-    OcoInforma?: string;
+    ocoInforma?: string;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "OCO_FECINIENT", })
-    OcoFecinient?: Date;
+    ocoFecinient?: Date;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "OCO_TIPGAR", length: 1, })
-    OcoTipgar?: string;
+    ocoTipgar?: string;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "OCO_CODRGA", precision: 5, })
-    OcoCodrga?: number;
+    ocoCodrga?: number;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "OCO_MMULTA", precision: 16, scale: 2, })
-    OcoMmulta?: number;
+    ocoMmulta?: number;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "OCO_MIMPSEG", precision: 12, scale: 2, })
-    OcoMimpseg?: number;
+    ocoMimpseg?: number;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "OCO_CODFPA", precision: 1, })
-    OcoCodfpa?: number;
+    ocoCodfpa?: number;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "OCO_DESCUENTO", precision: 12, scale: 2, })
-    OcoDescuento?: number;
+    ocoDescuento?: number;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "OCO_ADCONFIN", length: 8, })
-    OcoAdconfin?: string;
+    ocoAdconfin?: string;
     //-----------------------------------------------------------------------------------------
 }

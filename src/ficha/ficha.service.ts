@@ -2,14 +2,15 @@ import { HttpException, HttpStatus, Injectable, NotFoundException } from '@nestj
 import { ApiHeader } from '@nestjs/swagger';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Pla_Uni_Unidad_Entity } from 'src/apoyo/entities/pla_uni_unidad_entity';
-import { Repository } from 'typeorm';
+import { createQueryBuilder, Repository } from 'typeorm';
 import { Create_Pri_Fic_Dto } from './dto/create_pri_fic_dto';
 import { Create_Pri_Usu_Dto } from './dto/create_pri_usu_dto';
 import { Edit_Pri_Fic_Dto } from './dto/edit_pri_fic_dto';
 import { Edit_Pri_Usu_Dto } from './dto/edit_pri_usu_dto';
 
-import { Pri_Emp_Empleado_V_Entity } from './entities/pri_emp_empleado_v.entity';
+import { Pri_Emp_Empleado_V_Entity } from './entities/pri_emp_empleado_v_entity';
 import { Pri_Fic_Ficha_Entity } from './entities/pri_fic_ficha_entity';
+import { Pri_Fic_Ficha_Max_V_Entity } from './entities/pri_fic_ficha_max_v_entity';
 import { Pri_Usu_Usuarios_Entity } from './entities/pri_usu_usuarios.entity';
 
 @Injectable()
@@ -19,6 +20,7 @@ export class FichaService {
         @InjectRepository(Pri_Usu_Usuarios_Entity) private usuariosRepository: Repository<Pri_Usu_Usuarios_Entity>,
         @InjectRepository(Pri_Emp_Empleado_V_Entity) private empleadosRepository: Repository<Pri_Emp_Empleado_V_Entity>,
         @InjectRepository(Pri_Fic_Ficha_Entity) private fichasRepository: Repository<Pri_Fic_Ficha_Entity>,
+        @InjectRepository(Pri_Fic_Ficha_Max_V_Entity) private fichasMaxRepository: Repository<Pri_Fic_Ficha_Max_V_Entity>,
         //@InjectRepository(Pri_Usu_Empleados) private usuempRepository: Repository<Pri_Usu_Empleados>,
         //private readonly usuariosService: UsuariosService,
         //private readonly unidadService: UnidadService
@@ -649,22 +651,53 @@ export class FichaService {
     }
 
     //-------------------------------------------------------------------------------------------------------------
+    /*
+        @ApiHeader({
+            name: 'Servicio: buscaTodas_Fic()',
+            description: 'BUSCA TODOS LOS REGISTROS DE LA COMBINACION USUARIOS/EMPLEADOS',
+        })
+        //////////////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////////////
+        ///////////////   MAX()
+        //////////////////////////////////////////////////////////////////////////////////////////////////
+        //////////////////////////////////////////////////////////////////////////////////////////////////
+        async buscaListado_Fic() {
+    
+            const register = await this.fichasRepository
+                .createQueryBuilder()
+                .select("Pri_Fic_Ficha_Entity.ficCodigo", "ficCodigo")
+                .addSelect("MAX(Pri_Fic_Ficha_Entity.ficVersion)", "ficVersion")
+                .addSelect("Pri_Fic_Ficha_Entity.ficNombre", "ficNombre")
+                .groupBy("Pri_Fic_Ficha_Entity.ficCodigo")
+                .addGroupBy("Pri_Fic_Ficha_Entity.ficNombre")
+                .orderBy('Pri_Fic_Ficha_Entity.ficCodigo', 'ASC')
+                .getRawMany();
+            console.log('register: ', register);
+            if (!register) {
+                throw new HttpException('No se encontraron datos - (buscaTodas_FicDet)', HttpStatus.FORBIDDEN);
+            }
+            else
+                return register;
+        }
+    */
 
     @ApiHeader({
-        name: 'Servicio: buscaTodas_Fic()',
-        description: 'BUSCA TODOS LOS REGISTROS DE LA COMBINACION USUARIOS/EMPLEADOS',
+        name: 'Servicio: buscaListado_Fic()>',
+        description: 'BUSCA TODOS LOS REGISTROS DE LA COMBINACION FIC/FIC_MAX',
     })
+
     async buscaListado_Fic() {
 
-        const register = await this.fichasRepository.createQueryBuilder()
-            .select("Pri_Fic_Ficha_Entity.ficCodigo", "ficCodigo")
-            .addSelect("Pri_Fic_Ficha_Entity.ficVersion", "ficVersion")
+        const register = await this.fichasMaxRepository.createQueryBuilder()
+            .select("Pri_Fic_Ficha_Max_V_Entity.ficCodigoMax", "ficCodigoMax")
+            .addSelect("Pri_Fic_Ficha_Max_V_Entity.ficVersionMax", "ficVersionMax")
             .addSelect("Pri_Fic_Ficha_Entity.ficNombre", "ficNombre")
-            .orderBy('Pri_Fic_Ficha_Entity.ficCodigo', 'ASC')
-            .addOrderBy('Pri_Fic_Ficha_Entity.ficVersion', 'ASC')
+            .leftJoin(Pri_Fic_Ficha_Entity, "Pri_Fic_Ficha_Entity", "Pri_Fic_Ficha_Max_V_Entity.ficCodigoMax = Pri_Fic_Ficha_Entity.ficCodigo and Pri_Fic_Ficha_Max_V_Entity.ficVersionMax = Pri_Fic_Ficha_Entity.ficVersion")
+            .orderBy('Pri_Fic_Ficha_Max_V_Entity.ficCodigoMax', 'ASC')
+            .addOrderBy('Pri_Fic_Ficha_Max_V_Entity.ficVersionMax', 'ASC')
             .getRawMany();
         if (!register) {
-            throw new HttpException('No se encontraron datos - (buscaTodas_FicDet)', HttpStatus.FORBIDDEN);
+            throw new HttpException('No se encontraron datos - (buscaListado_Fic)', HttpStatus.FORBIDDEN);
         }
         else
             return register;
@@ -915,19 +948,19 @@ export class FichaService {
             .addSelect("Pla_Uni_Unidad_Entity.uniNombre", "uniNombre_sol")
             .addSelect("Pla_Uni_Unidad_Entity_b.uniNombre", "uniNombre_eje")
             .addSelect("Pri_Emp_Empleado_V_Entity.empNombre", "empNombre_res")
-            
+
             .where(v_where,
                 {
                     par_codunisol: v_codunisol,
                     par_codunieje: v_codunieje,
                     par_codcelres: v_codcelres
                 })
-                
+
             .leftJoin(Pri_Emp_Empleado_V_Entity, "Pri_Emp_Empleado_V_Entity", "Pri_Fic_Ficha_Entity.ficCodcelRes = Pri_Emp_Empleado_V_Entity.empCodcel")
             .leftJoin(Pla_Uni_Unidad_Entity, "Pla_Uni_Unidad_Entity", "Pri_Fic_Ficha_Entity.ficCoduniSol = Pla_Uni_Unidad_Entity.uniCodigo")
             .leftJoin(Pla_Uni_Unidad_Entity, "Pla_Uni_Unidad_Entity_b", "Pri_Fic_Ficha_Entity.ficCoduniEje = Pla_Uni_Unidad_Entity_b.uniCodigo")
             .getRawMany();
-    //console.log('register: ', register);            
+        //console.log('register: ', register);            
         if (!register) {
             throw new HttpException('No se encontraron datos - (busca_fichas_dinamica)', HttpStatus.FORBIDDEN);
         }

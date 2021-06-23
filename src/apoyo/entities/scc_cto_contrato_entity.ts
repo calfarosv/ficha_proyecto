@@ -1,307 +1,307 @@
 import { Type } from "class-transformer";
 import { Column, Entity, Index, PrimaryColumn } from "typeorm";
 
-@Index("SCC_CTO_CK01", ["CtoCiaCodcia", "CtoCorrelativo"], { unique: true })
+@Index("SCC_CTO_CK01", ["ctoCiaCodcia", "ctoCorrelativo"], { unique: true })
 @Entity("SCC_CTO_CONTRATO")
 
-export class Cei_Oco_Ordenes_Compra_Entity {
+export class Scc_Cto_Contrato_Entity {
 
     @PrimaryColumn()
     @Column("varchar2", { primary: true, name: "CTO_CIA_CODCIA", length: 3, })
-    CtoCiaCodcia?: string;
+    ctoCiaCodcia?: string;
     //-----------------------------------------------------------------------------------------
     @PrimaryColumn()
     @Column("number", { primary: true, name: "CTO_CORRELATIVO", precision: 20, })
-    CtoCorrelativo?: number;
+    ctoCorrelativo?: number;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_PRO_CODIGO", length: 12, })
-    CtoProCodigo?: string;
+    ctoProCodigo?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_ID", length: 20, })
-    CtoId?: string;
+    ctoId?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_OBJETO", length: 1000, })
-    CtoObjeto?: string;
+    ctoObjeto?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_TIPO", length: 15, })
-    CtoTipo?: string;
+    ctoTipo?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_GERENCIA", length: 3, })
-    CtoGerencia?: string;
+    ctoGerencia?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_CODENTI", length: 3, })
-    CtoCodenti?: string;
+    ctoCodenti?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_CODENTI_PROY", length: 5, })
-    CtoCodentiProy?: string;
+    ctoCodentiProy?: string;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "CTO_FUNC_RESP", precision: 4, })
-    CtoFuncResp?: number;
+    ctoFuncResp?: number;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_OBSERV", length: 350, })
-    CtoObserv?: string;
+    ctoObserv?: string;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "CTO_ARBITRAJE", precision: 2, })
-    CtoArbitraje?: number;
+    ctoArbitraje?: number;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "CTO_ORIGEN", precision: 2, })
-    CtoOrigen?: number;
+    ctoOrigen?: number;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "CTO_GARANTIA_RET", precision: 8, scale: 2, })
-    CtoGarantiaRet?: number;
+    ctoGarantiaRet?: number;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_LICITACION", length: 50, })
-    CtoLicitacion?: string;
+    ctoLicitacion?: string;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "CTO_FEC_FIRMA_CONT", })
-    CtoFecFirmaCont?: Date;
+    ctoFecFirmaCont?: Date;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "CTO_FEC_FIRMA_DIR", })
-    CtoFecFirmaDir?: Date;
+    ctoFecFirmaDir?: Date;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "CTO_FEC_NOTIF", })
-    CtoFecNotif?: Date;
+    ctoFecNotif?: Date;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "CTO_FEC_COPIA", })
-    CtoFecCopia?: Date;
+    ctoFecCopia?: Date;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "CTO_FEC_INICIO", })
-    CtoFecInicio?: Date;
+    ctoFecInicio?: Date;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "CTO_FEC_FIN", })
-    CtoFecFin?: Date;
+    ctoFecFin?: Date;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "CTO_ESTADO", precision: 2, })
-    CtoEstado?: number;
+    ctoEstado?: number;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "CTO_FEC_ESTADO", })
-    CtoFecEstado?: Date;
+    ctoFecEstado?: Date;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_RAZON_ESTADO", length: 200, })
-    CtoRazonEstado?: string;
+    ctoRazonEstado?: string;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "CTO_FEC_APROB_INICIO", })
-    CtoFecAprobInicio?: Date;
+    ctoFecAprobInicio?: Date;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "CTO_ANTICIPO_DED", precision: 8, scale: 2, })
-    CtoAnticipoDed?: number;
+    ctoAnticipoDed?: number;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "CTO_FEC_ORDEN", })
-    CtoFecOrden?: Date;
+    ctoFecOrden?: Date;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "CTO_OTROS_DED", precision: 8, scale: 2, })
-    CtoOtrosDed?: number;
+    ctoOtrosDed?: number;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "CTO_FEC_LIQUIDACION", })
-    CtoFecLiquidacion?: Date;
+    ctoFecLiquidacion?: Date;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "CTO_FEC_REGISTRO", })
-    CtoFecRegistro?: Date;
+    ctoFecRegistro?: Date;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_TIPO_CONTRATO", length: 2, })
-    CtoTipoContrato?: string;
+    ctoTipoContrato?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_CONFIDENCIAL", length: 1, })
-    CtoConfidencial?: string;
+    ctoConfidencial?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_RUTA_CTO_PDF", length: 500, })
-    CtoRutaCtoPdf?: string;
+    ctoRutaCtoPdf?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_TIPO_EVALUACION", length: 1, })
-    CtoTipoEvaluacion?: string;
+    ctoTipoEvaluacion?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_ACTIVO", length: 1, })
-    CtoActivo?: string;
+    ctoActivo?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_TIPCAM", length: 1, })
-    CtoTipcam?: string;
+    ctoTipcam?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_ESPECIALIDAD", length: 1, })
-    CtoEspecialidad?: string;
+    ctoEspecialidad?: string;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "CTO_DIGITADOR", precision: 4, })
-    CtoDigitador?: number;
+    ctoDigitador?: number;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_CODCPC", length: 2, })
-    CtoCodcpc?: string;
+    ctoCodcpc?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_USRCREA", length: 30, })
-    CtoUsrcrea?: string;
+    ctoUsrcrea?: string;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "CTO_FECCREA", })
-    CtoFeccrea?: Date;
+    ctoFeccrea?: Date;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_USRMOD", length: 30, })
-    CtoUsrmod?: string;
+    ctoUsrmod?: string;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "CTO_FECMOD", })
-    CtoFecmod?: Date;
+    ctoFecmod?: Date;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "CTO_CODESC", precision: 2, })
-    CtoCodesc?: number;
+    ctoCodesc?: number;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_PRY_BIEN_ALMACEN", length: 1, })
-    CtoPryBienAlmacen?: string;
+    ctoPryBienAlmacen?: string;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "CTO_FEC_INICIO_ETA2", })
-    CtoFecInicioEta2?: Date;
+    ctoFecInicioEta2?: Date;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "CTO_FEC_FIN_ETA2", })
-    CtoFecFinEta2?: Date;
+    ctoFecFinEta2?: Date;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "CTO_FEC_INICIO_ETA3", })
-    CtoFecInicioEta3?: Date;
+    ctoFecInicioEta3?: Date;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "CTO_FEC_FIN_ETA3", })
-    CtoFecFinEta3?: Date;
+    ctoFecFinEta3?: Date;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "CTO_PLAZOPAGO", precision: 3, })
-    CtoPlazopago?: number;
+    ctoPlazopago?: number;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_DIGITALIZADO", length: 1, })
-    CtoDigitalizado?: string;
+    ctoDigitalizado?: string;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "CTO_FEC_RECCONTCGB", })
-    CtoFecReccontcgb?: Date;
+    ctoFecReccontcgb?: Date;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "CTO_ANIO_APR", precision: 4, })
-    CtoAnioApr?: number;
+    ctoAnioApr?: number;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "CTO_CODAPR", precision: 4, })
-    CtoCodapr?: number;
+    ctoCodapr?: number;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_ORDEN_INICIO", length: 1, })
-    CtoOrdenInicio?: string;
+    ctoOrdenInicio?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_IMPORTACION", length: 1, })
-    CtoImportacion?: string;
+    ctoImportacion?: string;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "CTO_CODPLP", precision: 5, })
-    CtoCodplp?: number;
+    ctoCodplp?: number;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "CTO_FEC_INICIO_ETA1", })
-    CtoFecInicioEta1?: Date;
+    ctoFecInicioEta1?: Date;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "CTO_FEC_FIN_ETA1", })
-    CtoFecFinEta1?: Date;
+    ctoFecFinEta1?: Date;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_PRORROGABLE", length: 1, })
-    CtoProrrogable?: string;
+    ctoProrrogable?: string;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "CTO_OCO_ANIO", precision: 4, })
-    CtoOcoAnio?: number;
+    ctoOcoAnio?: number;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "CTO_CODOCO", precision: 6, })
-    CtoCodoco?: number;
+    ctoCodoco?: number;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_HABILES", length: 1, })
-    CtoHabiles?: string;
+    ctoHabiles?: string;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "CTO_DIAS_ALARMA_EJEC", precision: 3, })
-    CtoDiasAlarmaEjec?: number;
+    ctoDiasAlarmaEjec?: number;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "CTO_PLAZO_EJEC", precision: 4, })
-    CtoPlazoEjec?: number;
+    ctoPlazoEjec?: number;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_UNI_PLAZO_EJEC", length: 2, })
-    CtoUniPlazoEjec?: string;
+    ctoUniPlazoEjec?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_COMBUSTIBLE", length: 1, })
-    CtoCombustible?: string;
+    ctoCombustible?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_CONTRAPARTE", length: 250, })
-    CtoContraparte?: string;
+    ctoContraparte?: string;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "CTO_MONTO_MENSUAL_PACT", precision: 15, scale: 2, })
-    CtoMontoMensualPact?: number;
+    ctoMontoMensualPact?: number;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_GASTO_INST", length: 1, })
-    CtoGastoInst?: string;
+    ctoGastoInst?: string;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "CTO_CODCOT", precision: 16, })
-    CtoCodcot?: number;
+    ctoCodcot?: number;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "CTO_ANIOCOT", precision: 4, })
-    CtoAniocot?: number;
+    ctoAniocot?: number;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "CTO_FEC_PRES_GARANTIA", })
-    CtoFecPresGarantia?: Date;
+    ctoFecPresGarantia?: Date;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_INGRESO", length: 1, })
-    CtoIngreso?: string;
+    ctoIngreso?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_RECEP_CTO_HABIL", length: 1, })
-    CtoRecepCtoHabil?: string;
+    ctoRecepCtoHabil?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_VALIDA_CCP", length: 2, })
-    CtoValidaCcp?: string;
+    ctoValidaCcp?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_LACAP", length: 1, })
-    CtoLacap?: string;
+    ctoLacap?: string;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "CTO_PLAZO_INFORME", precision: 2, })
-    CtoPlazoInforme?: number;
+    ctoPlazoInforme?: number;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_HABIL_INFORME", length: 1, })
-    CtoHabilInforme?: string;
+    ctoHabilInforme?: string;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "CTO_PLAZO_REVISION", precision: 4, })
-    CtoPlazoRevision?: number;
+    ctoPlazoRevision?: number;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_HABIL_REVISION", length: 1, })
-    CtoHabilRevision?: string;
+    ctoHabilRevision?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_APLICA_SUSP", length: 1, })
-    CtoAplicaSusp?: string;
+    ctoAplicaSusp?: string;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "CTO_FEC_INI_SUSP", })
-    CtoFecIniSusp?: Date;
+    ctoFecIniSusp?: Date;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "CTO_FEC_FIN_SUSP", })
-    CtoFecFinSusp?: Date;
+    ctoFecFinSusp?: Date;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "CTO_FEC_APRO_SUSP", })
-    CtoFecAproSusp?: Date;
+    ctoFecAproSusp?: Date;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_NO_SESION_SUSP", length: 20, })
-    CtoNoSesionSusp?: string;
+    ctoNoSesionSusp?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_PTO_ACTA_SUSP", length: 20, })
-    CtoPtoActaSusp?: string;
+    ctoPtoActaSusp?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_ACUERDO_SUSP", length: 20, })
-    CtoAcuerdoSusp?: string;
+    ctoAcuerdoSusp?: string;
     //-----------------------------------------------------------------------------------------
     @Type(() => Date)
     @Column("timestamp", { name: "CTO_FEC_ORIG_FIN", })
-    CtoFecOrigFin?: Date;
+    ctoFecOrigFin?: Date;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_PLAZO_SUSP_HABIL", length: 1, })
-    CtoPlazoSuspHabil?: string;
+    ctoPlazoSuspHabil?: string;
     //-----------------------------------------------------------------------------------------
 
 

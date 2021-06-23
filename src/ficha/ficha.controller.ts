@@ -362,9 +362,11 @@ export class FichaController {
         description: 'OBTIENE TODOS LOS REGISTROS',
     })
     @Get('/encabezado/listado/')
-    buscaListado_Fic() {
+    async buscaListado_Fic() {
         return this.fichaService.buscaListado_Fic();
+
     }
+
 
     //-------------------------------------------------------------------------------------------------------------
 
