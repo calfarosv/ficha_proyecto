@@ -9,7 +9,9 @@ import { FichaController } from './ficha.controller';
 import { FichaService } from './ficha.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Pri_Usu_Usuarios_Entity, Pri_Emp_Empleado_V_Entity, Pri_Fic_Ficha_Entity, Pri_Fid_Ficha_Detalle_Entity, Pri_Fic_Ficha_Max_V_Entity])],
+  imports: [TypeOrmModule.forFeature([Pri_Usu_Usuarios_Entity, Pri_Emp_Empleado_V_Entity, 
+                                      Pri_Fic_Ficha_Entity, Pri_Fid_Ficha_Detalle_Entity, 
+                                      Pri_Fic_Ficha_Max_V_Entity])],
   controllers: [FichaController],
   providers: [FichaService],
   exports: [FichaService]

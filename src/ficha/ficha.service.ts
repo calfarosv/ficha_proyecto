@@ -948,14 +948,13 @@ export class FichaService {
             .addSelect("Pla_Uni_Unidad_Entity.uniNombre", "uniNombre_sol")
             .addSelect("Pla_Uni_Unidad_Entity_b.uniNombre", "uniNombre_eje")
             .addSelect("Pri_Emp_Empleado_V_Entity.empNombre", "empNombre_res")
-
+            //
             .where(v_where,
                 {
                     par_codunisol: v_codunisol,
                     par_codunieje: v_codunieje,
                     par_codcelres: v_codcelres
                 })
-
             .leftJoin(Pri_Emp_Empleado_V_Entity, "Pri_Emp_Empleado_V_Entity", "Pri_Fic_Ficha_Entity.ficCodcelRes = Pri_Emp_Empleado_V_Entity.empCodcel")
             .leftJoin(Pla_Uni_Unidad_Entity, "Pla_Uni_Unidad_Entity", "Pri_Fic_Ficha_Entity.ficCoduniSol = Pla_Uni_Unidad_Entity.uniCodigo")
             .leftJoin(Pla_Uni_Unidad_Entity, "Pla_Uni_Unidad_Entity_b", "Pri_Fic_Ficha_Entity.ficCoduniEje = Pla_Uni_Unidad_Entity_b.uniCodigo")
@@ -978,87 +977,63 @@ export class FichaService {
     })
     async creaFicha(dto: Create_Pri_Fic_Dto)//: Promise<Pri_Fic_Ficha_Entity> 
     {
-
+        // CREACIÓN DE NUEVO CODIGO
+        //if ((dto.ficCodigo == 99999 && dto.ficVersion == 1) || (dto.ficCodigo == 99999 && dto.ficVersion == 99999))
         if (dto.ficCodigo == 99999) {
-            if (dto.ficVersion == 1) {
+            // Obtengo el código máximo
+            const register = await this.fichasRepository
+                .createQueryBuilder()
+                .select("MAX(Pri_Fic_Ficha_Entity.ficCodigo)", "ficCodigo")
+                .getRawOne();
+            // Sumo 1 al código obtenido
+            dto.ficCodigo = register.ficCodigo + 1
+            // La versión siempre será 1 para un nuevo Código
+            dto.ficVersion = 1
+            // Guardo el registro
+            const model = this.fichasRepository.create(dto);
+            const newRegister = await this.fichasRepository.save(model);
+            //return newRegister;
+            return { message: 'Registro creado', newRegister };
+        }
+            // CREACIÓN DE NUEVA VERSIÓN
+        else if (dto.ficCodigo && dto.ficVersion == 99999) {
+            // Verifico que el código exista
+            const valida = await this.fichasRepository
+                .createQueryBuilder()
+                .select("Pri_Fic_Ficha_Entity.ficCodigo", "ficCodigo")
+                .where('Pri_Fic_Ficha_Entity.ficCodigo = :par_ficCodigo',
+                    {
+                        par_ficCodigo: dto.ficCodigo
+                    })
+                .getRawOne();
+            if (valida) {
+                // Si el código existe, obtengo la versión máxima
                 const register = await this.fichasRepository
                     .createQueryBuilder()
-                    .select("MAX(Pri_Fic_Ficha_Entity.ficCodigo)", "ficCodigo")
-                    .getRawOne();
-                dto.ficCodigo = register.ficCodigo + 1
-                //
-                const model = this.fichasRepository.create(dto);
-                const newRegister = await this.fichasRepository.save(model);
-                return newRegister;
-            }
-        }
-
-        if (dto.ficCodigo) {
-            if (dto.ficVersion = 99999) {
-                const valida = await this.fichasRepository
-                    .createQueryBuilder()
-                    .select("Pri_Fic_Ficha_Entity.ficCodigo", "ficCodigo")
+                    .select("MAX(Pri_Fic_Ficha_Entity.ficVersion)", "ficVersion")
                     .where('Pri_Fic_Ficha_Entity.ficCodigo = :par_ficCodigo',
                         {
                             par_ficCodigo: dto.ficCodigo
                         })
                     .getRawOne();
-                if (valida) {
-                    const register = await this.fichasRepository
-                        .createQueryBuilder()
-                        .select("MAX(Pri_Fic_Ficha_Entity.ficVersion)", "ficVersion")
-                        .where('Pri_Fic_Ficha_Entity.ficCodigo = :par_ficCodigo',
-                            {
-                                par_ficCodigo: dto.ficCodigo
-                            })
-                        .getRawOne();
-                    dto.ficVersion = register.ficVersion + 1
-                    //
-                    const model = this.fichasRepository.create(dto);
-                    const newRegister = await this.fichasRepository.save(model);
-                    return newRegister;
-                }
-
-                else {
-                    throw new HttpException('NO se encontro el codigo - (nueva ficha)', HttpStatus.FORBIDDEN);
-                }
-            }
-        }
-        /*
-                const register = await this.fichasRepository.findOne({
-                    ficCodigo: dto.ficCodigo,
-                    ficVersion: dto.ficVersion
-                });
-                if (register)
-                    throw new HttpException('NO SE PUEDE CREAR - El registro ya existe - (creaFicha)', HttpStatus.FORBIDDEN);
-                else {
-                    const model = this.fichasRepository.create(dto);
-                    const newRegister = await this.fichasRepository.save(model);
-                    return newRegister;
-                }
-            */
-    }
-
-    /*
-        //------------ CREA REGISTRO
-        @ApiHeader({
-            name: 'Servicio: creaFicha(dto: Create_Pri_Fic_Dto): Promise<Pri_Fic_Ficha_Entity>',
-            description: 'CREA UN REGISTRO A PARTIR DE CAMPOS DE LA LLAVE PRIMARIA',
-        })
-        async creaFicha(dto: Create_Pri_Fic_Dto): Promise<Pri_Fic_Ficha_Entity> {
-            const register = await this.fichasRepository.findOne({
-                ficCodigo: dto.ficCodigo,
-                ficVersion: dto.ficVersion
-            });
-            if (register)
-                throw new HttpException('NO SE PUEDE CREAR - El registro ya existe - (creaFicha)', HttpStatus.FORBIDDEN);
-            else {
+                // Sumo 1 a la versión obtenida
+                dto.ficVersion = register.ficVersion + 1
+                // Guardo el registro
                 const model = this.fichasRepository.create(dto);
                 const newRegister = await this.fichasRepository.save(model);
-                return newRegister;
+                //return newRegister;
+                return { message: 'Registro creado', newRegister };
+            }
+
+            else {
+                throw new HttpException('NO se encontro el codigo - (nueva ficha)', HttpStatus.FORBIDDEN);
             }
         }
-    */
+        else {
+            throw new HttpException('Combinación de CODIGO/VERSION errada - (nueva ficha)', HttpStatus.FORBIDDEN);
+        }
+    }
+
     //------------ ACTUALIZA UN REGISTRO
     @ApiHeader({
         name: 'Servicio: modificaUsuario(v_Codcia: string, v_Usuario: string, dto: Edit_Pri_Usu_Dto): Promise<Pri_Usu_Usuarios_Entity>',

@@ -367,7 +367,6 @@ export class FichaController {
 
     }
 
-
     //-------------------------------------------------------------------------------------------------------------
 
 
@@ -456,7 +455,8 @@ export class FichaController {
     @Post('/encabezado/')
     async creaFicha(@Body() datos: Create_Pri_Fic_Dto) {
         const data = await this.fichaService.creaFicha(datos);
-        return { message: 'Registro creado', data };
+        //return { message: 'Registro creado', data };
+        return data;
     }
 
     //------------ PUT - Actualiza registro
