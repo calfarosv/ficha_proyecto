@@ -1,6 +1,6 @@
 import { Type } from "class-transformer";
 import { Column, Entity, Index, OneToMany, PrimaryColumn } from "typeorm";
-import { Pri_Fid_Ficha_Detalle_Entity } from "./pri_fid_ficha_detalle_entity";
+import { Pri_Fid_FicDet_Entity } from "./pri_fid_ficdet_entity";
 
 @Index("PRI_FIC_PK", ["ficCodigo", "ficVersion"], { unique: true })
 @Entity("PRI_FIC_FICHA")
@@ -216,13 +216,14 @@ export class Pri_Fic_Ficha_Entity {
     ficFecMod?: Date;
     //-----------------------------------------------------------------------------------------
 
+
     @OneToMany
         (
-            () => Pri_Fid_Ficha_Detalle_Entity,
+            () => Pri_Fid_FicDet_Entity,
             v_fid => v_fid.encabezado//,
             //{ eager: true }
         )
-    detalles: Pri_Fid_Ficha_Detalle_Entity[];
+    detalles: Pri_Fid_FicDet_Entity[];
 
 
 } //------------

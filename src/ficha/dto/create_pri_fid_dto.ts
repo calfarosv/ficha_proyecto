@@ -55,9 +55,9 @@ export class Create_Pri_Fid_Dto {
     @ApiProperty({ description: 'CONTRATISTA-CONTRATISTA U OFERENTE ADJUDICADO', type: String, })
     fidContratista?: string;
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
     @IsString()
-    @IsOptional() @ApiProperty({ description: 'ADMINISTRADOR-ADMINISTRADOR DE CONTRATO O DE O.C.', type: String, })
+    @IsOptional()
+    @ApiProperty({ description: 'ADMINISTRADOR-ADMINISTRADOR DE CONTRATO O DE O.C.', type: String, })
     fidAdministra?: string;
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     @IsString()
@@ -189,4 +189,5 @@ export class Create_Pri_Fid_Dto {
     @Type(() => Date)
     fidFecMod?: Date;
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 }

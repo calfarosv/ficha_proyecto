@@ -4,9 +4,9 @@ import { Column, Entity, Index, JoinColumn, ManyToOne, PrimaryColumn } from "typ
 import { Pri_Fic_Ficha_Entity } from "./pri_fic_ficha_entity";
 
 @Index("PRI_FID_PK", ["fidCodfic", "fidCodver", "fidCodigo"], { unique: true })
-@Entity("PRI_FID_FICHA_DETALLE")
+@Entity("PRI_FID_FICDET")
 
-export class Pri_Fid_Ficha_Detalle_Entity {
+export class Pri_Fid_FicDet_Entity {
 
     @PrimaryColumn()
     @Column("number", { primary: true, name: "FID_CODFIC", precision: 5, scale: 0, })
@@ -23,7 +23,7 @@ export class Pri_Fid_Ficha_Detalle_Entity {
     @Column("varchar2", { name: "FID_TIPO", length: 1 })
     fidTipo?: string;
     //-----------------------------------------------------------------------------------------
-    @Column("number", { name: "FID_CODCTO", precision: 20, scale: 0, })
+    @Column("number", { name: "FID_CODCTO", precision: 15, scale: 0, })
     fidCodcto?: number;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "FID_CODOCO", precision: 6, scale: 0, })
@@ -35,13 +35,13 @@ export class Pri_Fid_Ficha_Detalle_Entity {
     @Column("varchar2", { name: "FID_DESCRIPCION", length: 1000 })
     fidDescripcion?: string;
     //-----------------------------------------------------------------------------------------
-    @Column("varchar2", { name: "FID_CONTRATISTA", length: 12 })
+     @Column("varchar2", { name: "FID_CONTRATISTA", length: 12 })
     fidContratista?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "FID_ADMINISTRA", length: 7 })
     fidAdministra?: string;
     //-----------------------------------------------------------------------------------------
-    @Column("varchar2", { name: "FID_SUPERVISOR", length: 7 })
+     @Column("varchar2", { name: "FID_SUPERVISOR", length: 7 })
     fidSupervisor?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "FID_OBSERVACIONES", length: 1000 })
@@ -121,6 +121,7 @@ export class Pri_Fid_Ficha_Detalle_Entity {
     @Column("timestamp", { name: "FID_FEC_MOD" })
     fidFecMod?: Date;
     //-----------------------------------------------------------------------------------------
+
 
     @ManyToOne
         (

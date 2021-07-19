@@ -10,7 +10,6 @@ import { Cg_Ent_Entidad_Entity } from './entities/cg_ent_entidad_entity';
 import { Lic_Fas_Fases_Entity } from './entities/lic_fas_fases_entity';
 import { Lic_Lic_Licitacion_Entity } from './entities/lic_lic_licitacion_entity';
 import { Pla_Uni_Unidad_Entity } from './entities/pla_uni_unidad_entity';
-import { Pri_Prc_Procesos_Cont_V_Entity } from './entities/pri_prc_procesos_cont_v_entity';
 import { Scc_Cat_Catalogo_Entity } from './entities/scc_cat_catalogo_entity';
 import { Scc_Cto_Contrato_Entity } from './entities/scc_cto_contrato_entity';
 import { Scc_Fac_Facturas_Entity } from './entities/scc_fac_facturas_entity';
@@ -27,7 +26,7 @@ import { Sis_Ubd_Usuarios_Bd_Entity } from './entities/sis_ubd_usuarios_bd_entit
                                       Scc_Mtc_Monto_Contrato_Entity, Scc_Ord_Orden_Cambio_Entity,
                                       Sis_Ubd_Usuarios_Bd_Entity, Scc_Cat_Catalogo_Entity,
                                       Cg_Ent_Entidad_Entity, Cei_Cot_Cotizaciones_Entity,
-                                      Lic_Fas_Fases_Entity, Pri_Prc_Procesos_Cont_V_Entity])],
+                                      Lic_Fas_Fases_Entity])],
   controllers: [ApoyoController],
   providers: [ApoyoService],
   exports: [ApoyoService]

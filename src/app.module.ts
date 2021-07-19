@@ -10,7 +10,7 @@ import { ApoyoModule } from './apoyo/apoyo.module';
 import { Pri_Usu_Usuarios_Entity } from './ficha/entities/pri_usu_usuarios.entity';
 import { Pri_Emp_Empleado_V_Entity } from './ficha/entities/pri_emp_empleado_v_entity';
 import { Pri_Fic_Ficha_Entity } from './ficha/entities/pri_fic_ficha_entity';
-import { Pri_Fid_Ficha_Detalle_Entity } from './ficha/entities/pri_fid_ficha_detalle_entity';
+import { Pri_Fid_FicDet_Entity } from './ficha/entities/pri_fid_ficdet_entity';
 import { Pla_Uni_Unidad_Entity } from './apoyo/entities/pla_uni_unidad_entity';
 import { Pri_Fic_Ficha_Max_V_Entity } from './ficha/entities/pri_fic_ficha_max_v_entity';
 //
@@ -28,7 +28,7 @@ import { Scc_Cat_Catalogo_Entity } from './apoyo/entities/scc_cat_catalogo_entit
 import { Cg_Ent_Entidad_Entity } from './apoyo/entities/cg_ent_entidad_entity';
 import { Cei_Cot_Cotizaciones_Entity } from './apoyo/entities/cei_cot_cotizaciones_entity';
 import { Lic_Fas_Fases_Entity } from './apoyo/entities/lic_fas_fases_entity';
-import { Pri_Prc_Procesos_Cont_V_Entity } from './apoyo/entities/pri_prc_procesos_cont_v_entity';
+import { Pri_Prc_Procesos_Cont_V_Entity } from './ficha/entities/pri_prc_procesos_cont_v_entity';
 //+++++++++++++++
 
 @Module({
@@ -42,7 +42,7 @@ import { Pri_Prc_Procesos_Cont_V_Entity } from './apoyo/entities/pri_prc_proceso
       database: 'desa',
       schema: '',
       entities: [Pri_Usu_Usuarios_Entity, Pri_Emp_Empleado_V_Entity,
-                 Pri_Fic_Ficha_Entity, Pri_Fid_Ficha_Detalle_Entity,
+                 Pri_Fic_Ficha_Entity, Pri_Fid_FicDet_Entity,
                  Pri_Fic_Ficha_Max_V_Entity,
                  Pla_Uni_Unidad_Entity, Cei_Oco_Ordenes_Compra_Entity, 
                  Cei_Ofe_Oferentes_Entity, Cei_Req_Requerimientos_Entity,

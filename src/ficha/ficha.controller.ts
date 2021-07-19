@@ -1,8 +1,10 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 import { ApiHeader, ApiTags } from '@nestjs/swagger';
 import { Create_Pri_Fic_Dto } from './dto/create_pri_fic_dto';
+import { Create_Pri_Fid_Dto } from './dto/create_pri_fid_dto';
 import { Create_Pri_Usu_Dto } from './dto/create_pri_usu_dto';
 import { Edit_Pri_Fic_Dto } from './dto/edit_pri_fic_dto';
+import { Edit_Pri_Fid_Dto } from './dto/edit_pri_fid_dto';
 import { Edit_Pri_Usu_Dto } from './dto/edit_pri_usu_dto';
 import { FichaService } from './ficha.service';
 
@@ -25,15 +27,17 @@ export class FichaController {
         description: 'OBTIENE TODOS LOS REGISTROS DEL CATALOGO DE USUARIOS A PARTIR DEL BODY',
     })
     @Get('/usuarios/')
-    buscaTodos_Usu() {
+    obtieneTodos_Usu() {
         return this.fichaService.buscaTodos_Usu();
     }
+
     //-------------------------------------------------------------------------------------------------------------
+
     @ApiHeader({
-        name: 'Controlador: @Get(/usuarios/by_key/:usu_codcia/:usu_usuario)',
+        name: 'Controlador: @Get(/usuarios/by_pk/:usu_codcia/:usu_usuario)',
         description: 'Obtiene registro a partir de parametros enviados en el URL',
     })
-    @Get('/usuarios/by_key/:usu_codcia/:usu_usuario')
+    @Get('/usuarios/by_pk/:usu_codcia/:usu_usuario')
     async obtiene_usuarios_por_llave(
         @Param('usu_codcia') v_codcia: string,
         @Param('usu_usuario') v_usuario: string
@@ -66,9 +70,11 @@ export class FichaController {
         return data;
 
     }
+
     //-------------------------------------------------------------------------------------------------------------
+
     @ApiHeader({
-        name: 'Controlador: @Get(/usuarios/by_key/:usu_codcia/:usu_usuario)',
+        name: 'Controlador: @Get(/usuarios/by_pk/:usu_codcia/:usu_usuario)',
         description: 'Obtiene registro a partir de parametros enviados en el URL',
     })
     @Get('/usuarios/by_ciauni/:usu_codcia/:usu_coduni')
@@ -147,15 +153,17 @@ export class FichaController {
         description: 'OBTIENE TODOS LOS REGISTROS DE LA LA VISTA DE EMPLEADOS A PARTIR DEL BODY',
     })
     @Get('/empleados/')
-    buscaTodos_Emp() {
+    obtieneTodos_Emp() {
         return this.fichaService.buscaTodos_Emp();
     }
+
     //-------------------------------------------------------------------------------------------------------------
+
     @ApiHeader({
-        name: 'Controlador: @Get(/empleados/by_key/:emp_codcia/:emp_codcel)',
+        name: 'Controlador: @Get(/empleados/by_pk/:emp_codcia/:emp_codcel)',
         description: 'Obtiene registro a partir de parametros enviados en el URL',
     })
-    @Get('/empleados/by_key/:emp_codcia/:emp_codcel')
+    @Get('/empleados/by_pk/:emp_codcia/:emp_codcel')
     async obtiene_empleados_por_llave(
         @Param('emp_codcia') v_codcia: string,
         @Param('emp_codcel') v_codcel: string
@@ -197,7 +205,9 @@ export class FichaController {
         }
         return data;
     }
+
     //-------------------------------------------------------------------------------------------------------------
+
     @ApiHeader({
         name: 'Controlador: @Get(/empleados/by_ciaent/:emp_codcia/:emp_codent)',
         description: 'Obtiene registro a partir de parametros enviados en el URL',
@@ -236,15 +246,17 @@ export class FichaController {
         description: 'OBTIENE TODOS LOS REGISTROS DE LA COMBINACIÓN DE USUARIOS CON VISTA DE EMPLEADOS A PARTIR DEL BODY',
     })
     @Get('/usuemp/')
-    buscaTodos_UsuEmp() {
+    obtieneTodos_UsuEmp() {
         return this.fichaService.buscaTodos_UsuEmp();
     }
+
     //-------------------------------------------------------------------------------------------------------------
+
     @ApiHeader({
-        name: 'Controlador: @Get(/usuemp/by_key/:emp_codcia/:emp_codcel)',
+        name: 'Controlador: @Get(/usuemp/by_pk/:emp_codcia/:emp_codcel)',
         description: 'Obtiene registro a partir de parametros enviados en el URL',
     })
-    @Get('/usuemp/by_key/:emp_codcia/:emp_codcel')
+    @Get('/usuemp/by_pk/:emp_codcia/:emp_codcel')
     async obtiene_usuemp_por_llave(
         @Param('emp_codcia') v_codcia: string,
         @Param('emp_codcel') v_codcel: string
@@ -284,7 +296,9 @@ export class FichaController {
         }
         return data;
     }
+
     //-------------------------------------------------------------------------------------------------------------    
+
     @ApiHeader({
         name: 'Controlador: @Get(/usuemp/by_ciauni/:usu_codcia/:emp_coduni)',
         description: 'Obtiene registro a partir de parametros enviados en el URL',
@@ -311,7 +325,9 @@ export class FichaController {
         }
         return data;
     }
+
     //-------------------------------------------------------------------------------------------------------------
+
     @ApiHeader({
         name: 'Controlador: @Get(/usuemp/by_ciaent/:usu_codcia/:emp_codent)',
         description: 'Obtiene registro a partir de parametros enviados en el URL',
@@ -351,7 +367,7 @@ export class FichaController {
         description: 'OBTIENE TODOS LOS REGISTROS',
     })
     @Get('/encabezado/')
-    buscaTodas_Fic() {
+    obtieneTodas_Fic() {
         return this.fichaService.buscaTodas_Fic();
     }
 
@@ -362,19 +378,18 @@ export class FichaController {
         description: 'OBTIENE TODOS LOS REGISTROS',
     })
     @Get('/encabezado/listado/')
-    async buscaListado_Fic() {
+    async obtieneListado_Fic() {
         return this.fichaService.buscaListado_Fic();
 
     }
 
     //-------------------------------------------------------------------------------------------------------------
 
-
     @ApiHeader({
-        name: 'Controlador: @Get(/usuarios/by_key/:usu_codcia/:usu_usuario)',
+        name: 'Controlador: @Get(/usuarios/by_pk/:usu_codcia/:usu_usuario)',
         description: 'Obtiene registro a partir de parametros enviados en el URL',
     })
-    @Get('/encabezado/by_key/:fic_codigo/:fic_version')
+    @Get('/encabezado/by_pk/:fic_codigo/:fic_version')
     async obtiene_fichas_por_llave(
         @Param('fic_codigo') v_codfic: number,
         @Param('fic_version') v_codver: number
@@ -425,7 +440,9 @@ export class FichaController {
         }
         return data;
     }
+
     //-------------------------------------------------------------------------------------------------------------
+
     @ApiHeader({
         name: 'Controlador: @Get(/usuemp/by_ciaent/:usu_codcia/:emp_codent)',
         description: 'Obtiene registro a partir de parametros enviados en el URL',
@@ -443,7 +460,6 @@ export class FichaController {
         }
         return data;
     }
-
     //**************************//
 
 
@@ -492,4 +508,150 @@ export class FichaController {
         return { message: 'Registro eliminado', data };
     }
 
-}
+    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    // FICHA DETALLE
+    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+
+    @ApiHeader({
+        name: 'Controlador: @Get()',
+        description: 'OBTIENE TODOS LOS REGISTROS',
+    })
+    @Get('/detalle/')
+    obtieneTodas_FicDet() {
+        return this.fichaService.buscaTodas_FicDet();
+    }
+
+    //-------------------------------------------------------------------------------------------------------------
+
+    @ApiHeader({
+        name: 'Controlador: @Get(/detalle/by_pk/:fid_codfic/:fid_codver/:fid_codigo)',
+        description: 'Obtiene registro a partir de parametros enviados en el URL',
+    })
+
+    @Get('/detalle/by_pk/:fid_codfic/:fid_codver/:fid_codigo')
+    async obtiene_FicDet_por_llave(
+        @Param('fid_codfic') v_codfic: number,
+        @Param('fid_codver') v_codver: number,
+        @Param('fid_codigo') v_codigo: number
+    ) {
+        const data: any[] = await this.fichaService.busca_FicDet_por_llave(v_codfic, v_codver, v_codigo);
+        if (data.length === 1) {
+            return data[0];
+        }
+        return data;
+
+    }
+
+    //-------------------------------------------------------------------------------------------------------------
+    //**************************//
+    @ApiHeader({
+        name: 'Controlador: @Get(/detalle/by_ficver/:fid_codfic/:fid_codver/)',
+        description: 'Obtiene registro a partir de parametros enviados en el URL',
+    })
+    @Get('/detalle/by_ficver/:fid_codfic/:fid_codver/')
+    async obtiene_FicDet_por_fk(
+        @Param('fid_codfic') v_codfic: number,
+        @Param('fid_codver') v_codver: number
+    ) {
+        let v_codigo: number = null;
+        const data: any[] = await this.fichaService.busca_FicDet_dinamica(v_codfic, v_codver, v_codigo);
+        if (data.length === 1) {
+            return data[0];
+        }
+        return data;
+    }
+    //**************************//
+    //-------------------------------------------------------------------------------------------------------------
+
+    //------------ POST - Crea registro
+
+        @ApiHeader({
+            name: 'Controlador: @Post(/detalle/)',
+            description: 'Crea registro a partir del BODY',
+        })
+        @Post('/detalle/')
+        async creaFichaDet(@Body() datos: Create_Pri_Fid_Dto) {
+            const data = await this.fichaService.creaFichaDet(datos);
+            //return { message: 'Registro creado', data };
+            return data;
+        }
+
+    //------------ PUT - Actualiza registro
+
+        @ApiHeader({
+            name: 'Controlador: @Put(/encabezado/:fic_codigo/:fic_version)',
+            description: 'Actualiza registro, se define la llave en el URL y las modificaciones en el BODY',
+        })
+        @Put('/detalle/:fid_codfic/:fid_codver/:fid_codigo/')
+        async modificaFichaDet(
+            @Param('fid_codfic') v_codfic: number,
+            @Param('fid_codver') v_codver: number,
+            @Param('fid_codigo') v_codigo: number,
+            @Body() dto: Edit_Pri_Fid_Dto) {
+console.log('PUT Controlador - fid_codfic: ', v_codfic);
+console.log('PUT Controlador - fid_codver: ', v_codver);
+console.log('PUT Controlador - fid_codigo: ', v_codigo);
+console.log('PUT Controlador - dto: ', dto);
+            const data = await this.fichaService.modificaFichaDet(v_codfic, v_codver, v_codigo, dto);
+            //console.log('data_controller: ', register);
+            return { message: 'Registro actualizado', data };
+        }
+
+    //------------ DELETE - Borra registro
+
+        @ApiHeader({
+            name: 'Controlador: @Delete(/usuarios/:usu_codcia/:usu_usuario)',
+            description: 'Borra registro del CATALOGO a partir de llave en el URL',
+        })
+        @Delete('/detalle/:fid_codfic/:fid_codver/:fid_codigo/')
+        async EliminaFichaDet(
+            @Param('fid_codfic') v_codfic: number,
+            @Param('fid_codver') v_codver: number,
+            @Param('fid_codigo') v_codigo: number,
+        ) {
+console.log('DELETE Controlador - fid_codfic: ', v_codfic);
+console.log('DELETE Controlador - fid_codver: ', v_codver);
+console.log('DELETE Controlador - fid_codigo: ', v_codigo);            
+            const data = await this.fichaService.EliminaFichaDet(v_codfic, v_codver,v_codigo);
+            return { message: 'Registro eliminado', data };
+        }
+
+
+    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    // FICHA DETALLE - VISTA PROCESOS
+    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++  
+
+    @ApiHeader({
+        name: 'Controlador:  @Get(/detalle/procesos/)',
+        description: 'OBTIENE TODOS LOS REGISTROS DE LA VISTA DE PROCESOS A PARTIR DEL BODY',
+    })
+    @Get('/detalle/procesos/')
+    obtieneTodos_ProV() {
+        return this.fichaService.buscaTodos_ProV();
+    }
+
+    //-------------------------------------------------------------------------------------------------------------
+
+    @ApiHeader({
+        name: 'Controlador: @Get(/empleados/by_pk/:emp_codcia/:emp_codcel)',
+        description: 'Obtiene registro a partir de parametros enviados en el URL',
+    })
+    @Get('/detalle/procesos/by_pk/:cto_ciacodcia/:cto_correlativo')
+    async obtiene_procesosV_por_llave(
+        @Param('cto_ciacodcia') v_cto_ciacodcia: string,
+        @Param('cto_correlativo') v_cto_correlativo: number
+    ) {
+        //console.log('v_codcia: ', v_codcia);
+        //console.log('v_codcel: ', v_codcel);
+        const data = await this.fichaService.busca_procesosV_por_llave(v_cto_ciacodcia, v_cto_correlativo);
+        return data;
+    }
+
+
+
+
+} ///// PRINCIPAL

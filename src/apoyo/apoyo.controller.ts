@@ -26,10 +26,10 @@ export class ApoyoController {
     }
     //-------------------------------------------------------------------------------------------------------------
     @ApiHeader({
-        name: 'Controlador: @Get(/unidades/by_key/:uni_codcia/:uni_codigo)',
+        name: 'Controlador: @Get(/unidades/by_pk/:uni_codcia/:uni_codigo)',
         description: 'Obtiene registro a partir de parametros enviados en el URL',
     })
-    @Get('/unidades/by_key/:uni_codcia/:uni_codigo')
+    @Get('/unidades/by_pk/:uni_codcia/:uni_codigo')
     async obtiene_unidades_por_llave(
         @Param('uni_codcia') v_codcia: string,
         @Param('uni_codigo') v_coduni: number
