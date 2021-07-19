@@ -10,7 +10,7 @@ import { ApoyoModule } from './apoyo/apoyo.module';
 import { Pri_Usu_Usuarios_Entity } from './ficha/entities/pri_usu_usuarios.entity';
 import { Pri_Emp_Empleado_V_Entity } from './ficha/entities/pri_emp_empleado_v_entity';
 import { Pri_Fic_Ficha_Entity } from './ficha/entities/pri_fic_ficha_entity';
-import { Pri_Fid_FicDet_Entity } from './ficha/entities/pri_fid_ficdet_entity';
+import { Pri_FicDet_Entity } from './ficha/entities/pri_ficdet_entity';
 import { Pla_Uni_Unidad_Entity } from './apoyo/entities/pla_uni_unidad_entity';
 import { Pri_Fic_Ficha_Max_V_Entity } from './ficha/entities/pri_fic_ficha_max_v_entity';
 //
@@ -42,7 +42,7 @@ import { Pri_Prc_Procesos_Cont_V_Entity } from './ficha/entities/pri_prc_proceso
       database: 'desa',
       schema: '',
       entities: [Pri_Usu_Usuarios_Entity, Pri_Emp_Empleado_V_Entity,
-                 Pri_Fic_Ficha_Entity, Pri_Fid_FicDet_Entity,
+                 Pri_Fic_Ficha_Entity, Pri_FicDet_Entity,
                  Pri_Fic_Ficha_Max_V_Entity,
                  Pla_Uni_Unidad_Entity, Cei_Oco_Ordenes_Compra_Entity, 
                  Cei_Ofe_Oferentes_Entity, Cei_Req_Requerimientos_Entity,

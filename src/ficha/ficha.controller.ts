@@ -545,6 +545,7 @@ export class FichaController {
     }
 
     //-------------------------------------------------------------------------------------------------------------
+
     //**************************//
     @ApiHeader({
         name: 'Controlador: @Get(/detalle/by_ficver/:fid_codfic/:fid_codver/)',
@@ -590,12 +591,13 @@ export class FichaController {
             @Param('fid_codver') v_codver: number,
             @Param('fid_codigo') v_codigo: number,
             @Body() dto: Edit_Pri_Fid_Dto) {
-console.log('PUT Controlador - fid_codfic: ', v_codfic);
-console.log('PUT Controlador - fid_codver: ', v_codver);
-console.log('PUT Controlador - fid_codigo: ', v_codigo);
-console.log('PUT Controlador - dto: ', dto);
+//console.log('PUT Controlador - fid_codfic: ', v_codfic);
+//console.log('PUT Controlador - fid_codver: ', v_codver);
+//console.log('PUT Controlador - fid_codigo: ', v_codigo);
+//console.log('PUT Controlador - dto: ', dto);
             const data = await this.fichaService.modificaFichaDet(v_codfic, v_codver, v_codigo, dto);
             //console.log('data_controller: ', register);
+//return { message: 'Hola Controlador' };
             return { message: 'Registro actualizado', data };
         }
 

@@ -76,8 +76,8 @@ export class Pri_Prc_Procesos_Cont_V_Entity {
     @Column("number", { name: "MONTO_PROCESO_ORIGEN", precision: 20, })
     montoProcesoOrigen?: number;
     //-----------------------------------------------------------------------------------------
-    @Type(() => Date)
     @Column("timestamp", { name: "CTO_FEC_FIRMA_CONT", })
+    @Type(() => Date)
     ctoFecFirmaCont?: Date;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_PRO_CODIGO", length: 12, })
@@ -89,16 +89,16 @@ export class Pri_Prc_Procesos_Cont_V_Entity {
     @Column("varchar2", { name: "ESTADO", length: 50, })
     estado?: string;
     //-----------------------------------------------------------------------------------------
-    @Type(() => Date)
     @Column("timestamp", { name: "CTO_FEC_INICIO", })
+    @Type(() => Date)
     ctoFecInicio?: Date;
     //-----------------------------------------------------------------------------------------
-    @Type(() => Date)
     @Column("timestamp", { name: "CTO_FEC_FIN_ORIG", })
+    @Type(() => Date)
     ctoFecFinOrig?: Date;
     //-----------------------------------------------------------------------------------------
-    @Type(() => Date)
     @Column("timestamp", { name: "CTO_FEC_FIN", })
+    @Type(() => Date)
     ctoFecFin?: Date;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CERTIFICA", length: 4000, })

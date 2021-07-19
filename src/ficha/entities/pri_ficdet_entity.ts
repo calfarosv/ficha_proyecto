@@ -6,7 +6,7 @@ import { Pri_Fic_Ficha_Entity } from "./pri_fic_ficha_entity";
 @Index("PRI_FID_PK", ["fidCodfic", "fidCodver", "fidCodigo"], { unique: true })
 @Entity("PRI_FID_FICDET")
 
-export class Pri_Fid_FicDet_Entity {
+export class Pri_FicDet_Entity {
 
     @PrimaryColumn()
     @Column("number", { primary: true, name: "FID_CODFIC", precision: 5, scale: 0, })
@@ -89,36 +89,36 @@ export class Pri_Fid_FicDet_Entity {
     @Column("number", { name: "FID_MONTO_TPA", precision: 15, scale: 2, })
     fidMontoTpa?: number;
     //-----------------------------------------------------------------------------------------
-    @Type(() => Date)
     @Column("timestamp", { name: "FID_FEC_ORDINI" })
+    @Type(() => Date)
     fidFecOrdini?: Date;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "FID_PLAZO_ORIG", precision: 4, scale: 0, })
     fidPlazoOrig?: number;
     //-----------------------------------------------------------------------------------------
-    @Type(() => Date)
     @Column("timestamp", { name: "FID_FEC_FINORI" })
+    @Type(() => Date)
     fidFecFinori?: Date;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "FID_PLAZO_ACTU", precision: 4, scale: 0, })
     fidPlazoActu?: number;
     //-----------------------------------------------------------------------------------------
-    @Type(() => Date)
     @Column("timestamp", { name: "FID_FEC_FINACT" })
+    @Type(() => Date)
     fidFecFinact?: Date;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "FID_USUARIO_CREA", length: 30 })
     fidUsuarioCrea?: string;
     //-----------------------------------------------------------------------------------------
-    @Type(() => Date)
     @Column("timestamp", { name: "FID_FEC_CREA" })
+    @Type(() => Date)
     fidFecCrea?: Date;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "FID_USUARIO_MOD", length: 30 })
     fidUsuarioMod?: string;
     //-----------------------------------------------------------------------------------------
-    @Type(() => Date)
     @Column("timestamp", { name: "FID_FEC_MOD" })
+    @Type(() => Date)
     fidFecMod?: Date;
     //-----------------------------------------------------------------------------------------
 
@@ -126,8 +126,8 @@ export class Pri_Fid_FicDet_Entity {
     @ManyToOne
         (
             () => Pri_Fic_Ficha_Entity,
-            v_fic => v_fic.detalles,
-            { lazy: true }
+            v_fic => v_fic.detalles//,
+            //{ lazy: true } - no activar
         )
     @JoinColumn
         ([

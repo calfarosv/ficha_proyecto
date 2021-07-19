@@ -1,6 +1,6 @@
 import { Type } from "class-transformer";
 import { Column, Entity, Index, OneToMany, PrimaryColumn } from "typeorm";
-import { Pri_Fid_FicDet_Entity } from "./pri_fid_ficdet_entity";
+import { Pri_FicDet_Entity } from "./pri_ficdet_entity";
 
 @Index("PRI_FIC_PK", ["ficCodigo", "ficVersion"], { unique: true })
 @Entity("PRI_FIC_FICHA")
@@ -33,96 +33,96 @@ export class Pri_Fic_Ficha_Entity {
     @Column("varchar2", { name: "FIC_FORMUL_SN", length: 1 })
     ficFormulSn?: string;
     //-----------------------------------------------------------------------------------------
-    @Type(() => Date)
     @Column("timestamp", { name: "FIC_FOR_FEPINI" })
+    @Type(() => Date)
     ficForFepini?: Date;
     //-----------------------------------------------------------------------------------------
-    @Type(() => Date)
     @Column("timestamp", { name: "FIC_FOR_FEPFIN" })
+    @Type(() => Date)
     ficForFepfin?: Date;
     //-----------------------------------------------------------------------------------------
-    @Type(() => Date)
     @Column("timestamp", { name: "FIC_FOR_FERINI" })
+    @Type(() => Date)
     ficForFerini?: Date;
     //-----------------------------------------------------------------------------------------
-    @Type(() => Date)
     @Column("timestamp", { name: "FIC_FOR_FERFIN" })
+    @Type(() => Date)
     ficForFerfin?: Date;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "FIC_AMBIEN_SN", length: 1 })
     ficAmbienSn?: string;
     //-----------------------------------------------------------------------------------------
-    @Type(() => Date)
     @Column("timestamp", { name: "FIC_AMB_FEPINI" })
+    @Type(() => Date)
     ficAmbFepini?: Date;
     //-----------------------------------------------------------------------------------------
-    @Type(() => Date)
     @Column("timestamp", { name: "FIC_AMB_FEPFIN" })
+    @Type(() => Date)
     ficAmbFepfin?: Date;
     //-----------------------------------------------------------------------------------------
-    @Type(() => Date)
     @Column("timestamp", { name: "FIC_AMB_FERINI" })
+    @Type(() => Date)
     ficAmbFerini?: Date;
     //-----------------------------------------------------------------------------------------
-    @Type(() => Date)
     @Column("timestamp", { name: "FIC_AMB_FERFIN" })
+    @Type(() => Date)    
     ficAmbFerfin?: Date;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "FIC_CONTRA_SN", length: 1 })
     ficContraSn?: string;
     //-----------------------------------------------------------------------------------------
-    @Type(() => Date)
     @Column("timestamp", { name: "FIC_CON_FEPINI" })
+    @Type(() => Date)
     ficConFepini?: Date;
     //-----------------------------------------------------------------------------------------
-    @Type(() => Date)
     @Column("timestamp", { name: "FIC_CON_FEPFIN" })
+    @Type(() => Date)
     ficConFepfin?: Date;
     //-----------------------------------------------------------------------------------------
-    @Type(() => Date)
     @Column("timestamp", { name: "FIC_CON_FERINI" })
+    @Type(() => Date)
     ficConFerini?: Date;
     //-----------------------------------------------------------------------------------------
-    @Type(() => Date)
     @Column("timestamp", { name: "FIC_CON_FERFIN" })
+    @Type(() => Date)
     ficConFerfin?: Date;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "FIC_EJECUT_SN", length: 1 })
     ficEjecutSn?: string;
     //-----------------------------------------------------------------------------------------
-    @Type(() => Date)
     @Column("timestamp", { name: "FIC_EJE_FEPINI" })
+    @Type(() => Date)
     ficEjeFepini?: Date;
     //-----------------------------------------------------------------------------------------
-    @Type(() => Date)
     @Column("timestamp", { name: "FIC_EJE_FEPFIN" })
+    @Type(() => Date)
     ficEjeFepfin?: Date;
     //-----------------------------------------------------------------------------------------
-    @Type(() => Date)
     @Column("timestamp", { name: "FIC_EJE_FERINI" })
+    @Type(() => Date)
     ficEjeFerini?: Date;
     //-----------------------------------------------------------------------------------------
-    @Type(() => Date)
     @Column("timestamp", { name: "FIC_EJE_FERFIN" })
+    @Type(() => Date)
     ficEjeFerfin?: Date;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "FIC_LIQUID_SN", length: 1 })
     ficLiquidSn?: string;
     //-----------------------------------------------------------------------------------------
-    @Type(() => Date)
     @Column("timestamp", { name: "FIC_LIQ_FEPINI" })
+    @Type(() => Date)
     ficLiqFepini?: Date;
     //-----------------------------------------------------------------------------------------
-    @Type(() => Date)
     @Column("timestamp", { name: "FIC_LIQ_FEPFIN" })
+    @Type(() => Date)
     ficLiqFepfin?: Date;
     //-----------------------------------------------------------------------------------------
-    @Type(() => Date)
     @Column("timestamp", { name: "FIC_LIQ_FERINI" })
+    @Type(() => Date)
     ficLiqFerini?: Date;
     //-----------------------------------------------------------------------------------------
+    @Column("timestamp", { name: "FIC_LIQ_FERFIN" })
     @Type(() => Date)
-    @Column("date", { name: "FIC_LIQ_FERFIN" })
     ficLiqFerfin?: Date;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "FIC_ESPTEC_SN", length: 1 })
@@ -188,8 +188,8 @@ export class Pri_Fic_Ficha_Entity {
     @Column("varchar2", { name: "FIC_OBSERV_FIC", length: 1000 })
     ficObservFic?: string;
     //-----------------------------------------------------------------------------------------
-    @Type(() => Date)
     @Column("timestamp", { name: "FIC_FECHA_VER" })
+    @Type(() => Date)
     ficFechaVer?: Date;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "FIC_ESTADO_VER", length: 1 })
@@ -204,26 +204,26 @@ export class Pri_Fic_Ficha_Entity {
     @Column("varchar2", { name: "FIC_USUARIO_CREA", length: 30 })
     ficUsuarioCrea?: string;
     //-----------------------------------------------------------------------------------------
-    @Type(() => Date)
     @Column("timestamp", { name: "FIC_FEC_CREA" })
+    @Type(() => Date)
     ficFecCrea?: Date;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "FIC_USUARIO_MOD", length: 30 })
     ficUsuarioMod?: string;
     //-----------------------------------------------------------------------------------------
-    @Type(() => Date)
     @Column("timestamp", { name: "FIC_FEC_MOD" })
+    @Type(() => Date)
     ficFecMod?: Date;
     //-----------------------------------------------------------------------------------------
 
 
     @OneToMany
         (
-            () => Pri_Fid_FicDet_Entity,
-            v_fid => v_fid.encabezado//,
+            () => Pri_FicDet_Entity,
+            v_fid => v_fid.encabezado,
             //{ eager: true }
         )
-    detalles: Pri_Fid_FicDet_Entity[];
+    detalles: Pri_FicDet_Entity[];
 
 
 } //------------
