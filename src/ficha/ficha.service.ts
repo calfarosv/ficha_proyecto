@@ -23,12 +23,12 @@ import { Pri_Usu_Usuarios_Entity } from './entities/pri_usu_usuarios.entity';
 export class FichaService {
 
     constructor(
-        @InjectRepository(Pri_Usu_Usuarios_Entity)          private usuariosRepository: Repository<Pri_Usu_Usuarios_Entity>,
-        @InjectRepository(Pri_Emp_Empleado_V_Entity)        private empleadosRepository: Repository<Pri_Emp_Empleado_V_Entity>,
-        @InjectRepository(Pri_Fic_Ficha_Entity)             private fichasRepository: Repository<Pri_Fic_Ficha_Entity>,
-        @InjectRepository(Pri_FicDet_Entity)            private fichasDetRepository: Repository<Pri_FicDet_Entity>,
-        @InjectRepository(Pri_Fic_Ficha_Max_V_Entity)       private fichasMaxRepository: Repository<Pri_Fic_Ficha_Max_V_Entity>,
-        @InjectRepository(Pri_Prc_Procesos_Cont_V_Entity)   private procesosVRepository: Repository<Pri_Prc_Procesos_Cont_V_Entity>,
+        @InjectRepository(Pri_Usu_Usuarios_Entity) private usuariosRepository: Repository<Pri_Usu_Usuarios_Entity>,
+        @InjectRepository(Pri_Emp_Empleado_V_Entity) private empleadosRepository: Repository<Pri_Emp_Empleado_V_Entity>,
+        @InjectRepository(Pri_Fic_Ficha_Entity) private fichasRepository: Repository<Pri_Fic_Ficha_Entity>,
+        @InjectRepository(Pri_FicDet_Entity) private fichasDetRepository: Repository<Pri_FicDet_Entity>,
+        @InjectRepository(Pri_Fic_Ficha_Max_V_Entity) private fichasMaxRepository: Repository<Pri_Fic_Ficha_Max_V_Entity>,
+        @InjectRepository(Pri_Prc_Procesos_Cont_V_Entity) private procesosVRepository: Repository<Pri_Prc_Procesos_Cont_V_Entity>,
         //@InjectRepository(Cei_Ofe_Oferentes_Entity) private oferentesRepository: Repository<Cei_Ofe_Oferentes_Entity>,
         //@InjectRepository(Pri_Usu_Empleados) private usuempRepository: Repository<Pri_Usu_Empleados>,
         //private readonly usuariosService: UsuariosService,
@@ -1138,6 +1138,21 @@ export class FichaService {
             ficVersion: v_codver
         });
         if (register) {
+
+            // ELIMINACIÓN DE DETALLES
+            const reg_detalle = await this.fichasDetRepository.find({
+                fidCodfic: v_codfic,
+                fidCodver: v_codver
+            });
+            if (reg_detalle) {
+                // Elimino registro
+                const toDelete = this.fichasDetRepository.create(reg_detalle);
+                this.fichasDetRepository.remove(toDelete);
+            }
+            else {
+                throw new HttpException('NO SE PUEDE ELIMINAR - No existe el registro - (EliminaFichaDet)', HttpStatus.FORBIDDEN);
+            }
+            // ELIMINACIÓN DEL REGISTRO DE ENCABEZADO
             const toDelete = this.fichasRepository.create(register);
             this.fichasRepository.remove(toDelete);
         }
@@ -1479,38 +1494,39 @@ export class FichaService {
         description: 'ACTUALIZA UN REGISTRO',
     })
     async modificaFichaDet(v_codfic: number, v_codver: number, v_codigo: number, dto: Edit_Pri_Fid_Dto): Promise<Pri_FicDet_Entity> {
-        const toUpdate = await this.busca_FicDet_por_pk(v_codfic, v_codver,v_codigo);
-console.log('toUpdate_editCat: ', toUpdate);        
+        const toUpdate = await this.busca_FicDet_por_pk(v_codfic, v_codver, v_codigo);
+        console.log('toUpdate_editCat: ', toUpdate);
         if (!toUpdate)
             throw new HttpException('NO SE PUEDE ACTUALIZAR - No existe el registro - (modificaFichaDet)', HttpStatus.FORBIDDEN);
         const modelToEdit = Object.assign(toUpdate, dto);
         return await this.fichasDetRepository.save(modelToEdit);
-    } 
+    }
 
     //------------ ELIMINA UN REGISTRO
 
-            @ApiHeader({
-                name: 'Servicio: EliminaFicha(v_codfic: number, v_codver: number)',
-                description: 'ELIMINA UN REGISTRO DEL CATALOGO UTILIZANDO LOS CAMPOS DE LA LLAVE PRIMARIA VIA URL',
-            })
-            async EliminaFichaDet(v_codfic: number, v_codver: number, v_codigo: number) {
-//console.log('DELETE Servicio - fid_codfic: ', v_codfic);
-//console.log('DELETE Servicio - fid_codver: ', v_codver);
-//console.log('DELETE Servicio - fid_codigo: ', v_codigo);             
-                const register = await this.fichasDetRepository.findOne({
-                    fidCodfic: v_codfic,
-                    fidCodver: v_codver,
-                    fidCodigo: v_codigo
-                });
-//console.log('DELETE Servicio - register: ', register);                
-                if (register) {
-                    const toDelete = this.fichasDetRepository.create(register);
-                    this.fichasDetRepository.remove(toDelete);
-                }
-                else {
-                    throw new HttpException('NO SE PUEDE ELIMINAR - No existe el registro - (EliminaFichaDet)', HttpStatus.FORBIDDEN);
-                }
-            }
+    @ApiHeader({
+        name: 'Servicio: EliminaFicha(v_codfic: number, v_codver: number)',
+        description: 'ELIMINA UN REGISTRO DEL CATALOGO UTILIZANDO LOS CAMPOS DE LA LLAVE PRIMARIA VIA URL',
+    })
+    async EliminaFichaDet(v_codfic: number, v_codver: number, v_codigo: number) {
+        //console.log('DELETE Servicio - fid_codfic: ', v_codfic);
+        //console.log('DELETE Servicio - fid_codver: ', v_codver);
+        //console.log('DELETE Servicio - fid_codigo: ', v_codigo);             
+        const register = await this.fichasDetRepository.findOne({
+            fidCodfic: v_codfic,
+            fidCodver: v_codver,
+            fidCodigo: v_codigo
+        });
+        //console.log('DELETE Servicio - register: ', register);                
+        if (register) {
+            // Elimino registro
+            const toDelete = this.fichasDetRepository.create(register);
+            this.fichasDetRepository.remove(toDelete);
+        }
+        else {
+            throw new HttpException('NO SE PUEDE ELIMINAR - No existe el registro - (EliminaFichaDet)', HttpStatus.FORBIDDEN);
+        }
+    }
 
 
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
