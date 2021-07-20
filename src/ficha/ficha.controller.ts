@@ -406,6 +406,26 @@ export class FichaController {
 
     //-------------------------------------------------------------------------------------------------------------
 
+    @ApiHeader({
+        name: 'Controlador: @Get(/encabezado/by_ficha/:fic_codigo/)',
+        description: 'Obtiene registro a partir de parametros enviados en el URL',
+    })
+    @Get('/encabezado/by_ficha/:fic_codigo/')
+    async obtiene_versiones_por_ficha(
+        @Param('fic_codigo') v_codfic: number
+    ) {
+        //console.log('v_codfic: ', v_codfic);
+        //console.log('v_codver: ', v_codver);
+        const data: any[] = await this.fichaService.busca_versiones_por_ficha(v_codfic);
+        if (data.length === 1) {
+            return data[0];
+        }
+        return data;
+
+    }
+
+    //-------------------------------------------------------------------------------------------------------------
+
     //**************************//
     @ApiHeader({
         name: 'Controlador: @Get(/encabezado/by_sol/:fic_codunisol)',
