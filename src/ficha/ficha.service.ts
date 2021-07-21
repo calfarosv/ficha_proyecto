@@ -47,18 +47,23 @@ export class FichaService {
         description: 'BUSCA TODOS LOS REGISTROS DEL MAESTRO DE USUARIOS',
     })
     async buscaTodos_Usu(): Promise<Pri_Usu_Usuarios_Entity[]> {
+        //************************************************************************************************************************************************ */        
         const register = await this.usuariosRepository.find(
             {
+                //where: { usuCodcia: "001", usuCodcel: "7309011" },
                 order: {
                     usuCodcia: 'ASC',
                     usuUsuario: 'ASC'
                 }
             }
         );
+        /*
         if (!register)
             throw new NotFoundException('No se ha encontrado ningún registro (buscaTodos_Usu)');
         else
             return register;
+        */
+        return register;
     }
 
     //-------------------------------------------------------------------------------------------------------------
@@ -74,11 +79,13 @@ export class FichaService {
                 usuUsuario: v_usuario
             }
         );
-
+        /*
         if (!register)
             throw new HttpException('No existen registros para los parametros definidos en la consulta - (busca_usuarios_por_llave)', HttpStatus.FORBIDDEN);
         else
             return register;
+        */
+        return register;
     }
 
     //-------------------------------------------------------------------------------------------------------------
@@ -153,11 +160,14 @@ export class FichaService {
             .addOrderBy('Pri_Usu_Usuarios_Entity.usuUsuario', 'ASC')
             .getRawMany();
         //console.log('register: ', register);
+        /*
         if (!register || register.length === 0) {
             throw new HttpException('Registro nulo para los parametros definidos en la consulta - (busca_usuario)', HttpStatus.FORBIDDEN);
         }
         else
             return register;
+        */
+        return register;
     }
 
     //-------------------------------------------------------------------------------------------------------------
@@ -234,16 +244,20 @@ export class FichaService {
     async buscaTodos_Emp(): Promise<Pri_Emp_Empleado_V_Entity[]> {
         const register = await this.empleadosRepository.find(
             {
+                where: { "empCodcia": "001", "empCodcel": "7309011" },
                 order: {
                     empCodcia: 'ASC',
                     empNombre: 'ASC'
                 }
             }
         );
+        /*
         if (!register)
             throw new NotFoundException('No se ha encontrado ningún registro (buscaTodos_Emp)');
         else
             return register;
+        */
+        return register;
     }
 
     //-------------------------------------------------------------------------------------------------------------
@@ -259,11 +273,13 @@ export class FichaService {
                 empCodcel: v_codcel
             }
         );
-
+        /*
         if (!register)
             throw new HttpException('No existen registros para los parametros definidos en la consulta - (busca_empleados_por_llave)', HttpStatus.FORBIDDEN);
         else
             return register;
+        */
+        return register;
     }
 
     //-------------------------------------------------------------------------------------------------------------
@@ -348,11 +364,14 @@ export class FichaService {
             .getRawMany();
         //.getRawOne();
         //console.log('VARIABLE: ', variable);
+        /*
         if (!register || register.length === 0) {
             throw new HttpException('Registro nulo para los parametros definidos en la consulta - (busca_empleado)', HttpStatus.FORBIDDEN);
         }
         else
             return register;
+        */
+        return register;
     }
 
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -385,11 +404,14 @@ export class FichaService {
             .orderBy('Pri_Usu_Usuarios_Entity.usuCoduni', 'ASC')
             .addOrderBy('Pri_Usu_Usuarios_Entity.usuUsuario', 'ASC')
             .getRawMany();
-        if (!register || register.length === 0) {
+        /*
+            if (!register || register.length === 0) {
             throw new HttpException('No se encontraron datos - (buscaTodos_UsuEmp)', HttpStatus.FORBIDDEN);
         }
         else
             return register;
+        */
+        return register;
     }
 
     //-------------------------------------------------------------------------------------------------------------
@@ -425,11 +447,14 @@ export class FichaService {
             .orderBy('Pri_Usu_Usuarios_Entity.usuCoduni', 'ASC')
             .addOrderBy('Pri_Usu_Usuarios_Entity.usuUsuario', 'ASC')
             .getRawMany();
-        if (!register || register.length === 0) {
+        /*
+            if (!register || register.length === 0) {
             throw new HttpException('No se encontraron datos - (buscaTodos_UsuEmp)', HttpStatus.FORBIDDEN);
         }
         else
             return register;
+        */
+        return register;
     }
 
     //-------------------------------------------------------------------------------------------------------------
@@ -540,11 +565,14 @@ export class FichaService {
             .getRawMany();
         //.getRawOne();
         //console.log('VARIABLE: ', variable);
+        /*
         if (!register || register.length === 0) {
             throw new HttpException('Registro nulo para los parametros definidos en la consulta - (busca_empleado)', HttpStatus.FORBIDDEN);
         }
         else
             return register;
+        */
+        return register;
     }
 
 
@@ -653,11 +681,15 @@ export class FichaService {
             .orderBy('Pri_Fic_Ficha_Entity.ficCodigo', 'ASC')
             .addOrderBy('Pri_Fic_Ficha_Entity.ficVersion', 'ASC')
             .getRawMany();
-        if (!register || register.length === 0) {
+        /*
+            if (!register || register.length === 0) {
             throw new HttpException('No se encontraron datos - (buscaTodas_FicDet)', HttpStatus.FORBIDDEN);
         }
         else
             return register;
+            
+        */
+        return register;
     }
 
     //-------------------------------------------------------------------------------------------------------------
@@ -774,11 +806,14 @@ export class FichaService {
             .orderBy('Pri_Fic_Ficha_Max_V_Entity.ficCodigoMax', 'ASC')
             .addOrderBy('Pri_Fic_Ficha_Max_V_Entity.ficVersionMax', 'ASC')
             .getRawMany();
+        /*
         if (!register || register.length === 0) {
             throw new HttpException('No se encontraron datos - (buscaListado_Fic)', HttpStatus.FORBIDDEN);
         }
         else
             return register;
+        */
+        return register;
     }
 
     //-------------------------------------------------------------------------------------------------------------
@@ -795,10 +830,14 @@ export class FichaService {
             }
         );
 
+        /*
+        return register;
         if (!register)
             throw new HttpException('No existen registros para los parametros definidos en la consulta - (busca_fichas_por_fk)', HttpStatus.FORBIDDEN);
         else
             return register;
+            */
+        return register;
     }
 
     //-------------------------------------------------------------------------------------------------------------
@@ -908,11 +947,14 @@ export class FichaService {
             .orderBy('Pri_Fic_Ficha_Entity.ficCodigo', 'ASC')
             .addOrderBy('Pri_Fic_Ficha_Entity.ficVersion', 'ASC')
             .getRawMany();
-        if (!register || register.length === 0) {
-            throw new HttpException('No se encontraron datos - (busca_fichas_por_llave)', HttpStatus.FORBIDDEN);
-        }
-        else
-            return register;
+        /*
+    if (!register || register.length === 0) {
+        throw new HttpException('No se encontraron datos - (busca_fichas_por_llave)', HttpStatus.FORBIDDEN);
+    }
+    else
+        return register;
+    */
+        return register;
     }
 
     //-------------------------------------------------------------------------------------------------------------
@@ -1000,12 +1042,15 @@ export class FichaService {
             .orderBy('Pri_Fic_Ficha_Entity.ficCodigo', 'ASC')
             .addOrderBy('Pri_Fic_Ficha_Entity.ficVersion', 'ASC')
             .getRawMany();
-            //console.log('register: ', register);            
+        //console.log('register: ', register);
+        /*
         if (!register || register.length === 0) {
             throw new HttpException('No se encontraron datos - (busca_versiones_por_ficha)', HttpStatus.FORBIDDEN);
         }
         else
             return register;
+        */
+        return register;
     }
 
     //-------------------------------------------------------------------------------------------------------------
@@ -1131,11 +1176,14 @@ export class FichaService {
             .leftJoin(Pla_Uni_Unidad_Entity, 'Pla_Uni_Unidad_Entity_b', 'Pri_Fic_Ficha_Entity.ficCoduniEje = Pla_Uni_Unidad_Entity_b.uniCodigo')
             .getRawMany();
         //console.log('register: ', register);            
+        /*
         if (!register || register.length === 0) {
             throw new HttpException('No se encontraron datos - (busca_fichas_dinamica)', HttpStatus.FORBIDDEN);
         }
         else
             return register;
+        */
+        return register;
     }
 
     //-------------------------------------------------------------------------------------------------------------
@@ -1317,11 +1365,14 @@ export class FichaService {
             .addOrderBy('Pri_FicDet_Entity.fidCodver', 'ASC')
             .addOrderBy('Pri_FicDet_Entity.fidCodigo', 'ASC')
             .getRawMany();
+        /*
         if (!register || register.length === 0) {
             throw new HttpException('No se encontraron datos - (buscaTodas_FicDet)', HttpStatus.FORBIDDEN);
         }
         else
             return register;
+        */
+        return register;
     }
 
     //-------------------------------------------------------------------------------------------------------------
@@ -1338,11 +1389,13 @@ export class FichaService {
                 fidCodigo: v_fid_codigo
             }
         );
-
-        if (!register)
-            throw new HttpException('No existen registros para los parametros definidos en la consulta - (busca_FicDet_por_llave)', HttpStatus.FORBIDDEN);
-        else
-            return register;
+        /*
+    if (!register)
+        throw new HttpException('No existen registros para los parametros definidos en la consulta - (busca_FicDet_por_llave)', HttpStatus.FORBIDDEN);
+    else
+        return register;
+    */
+        return register;
     }
 
     //-------------------------------------------------------------------------------------------------------------
@@ -1411,11 +1464,14 @@ export class FichaService {
             .addOrderBy('Pri_FicDet_Entity.fidCodigo', 'ASC')
             .getRawOne();
         //console.log('register: ', register);
+        /*
         if (!register || register.length === 0) {
             throw new HttpException('No se encontraron datos - (busca_FicDet_por_llave)', HttpStatus.FORBIDDEN);
         }
         else
             return register;
+        */
+        return register;
     }
 
     //-------------------------------------------------------------------------------------------------------------
@@ -1520,11 +1576,16 @@ export class FichaService {
             .addOrderBy('Pri_FicDet_Entity.fidCodigo', 'ASC')
             .getRawMany();
         //console.log('register: ', register);    
-        if (!register || register.length === 0) {
-            throw new HttpException('No se encontraron datos - (busca_FicDet_dinamica)', HttpStatus.FORBIDDEN);
-        }
-        else
-            return register;
+        //if (!register || register.length === 0) {
+        /*
+    if (!register) {
+        return;
+        //throw new HttpException('No datos - (busca_FicDet_dinamica)', HttpStatus.FORBIDDEN);
+    }
+    else
+        return register;
+    */
+        return register;
     }
 
     //-------------------------------------------------------------------------------------------------------------
@@ -1641,10 +1702,13 @@ export class FichaService {
                 }
             }
         );
+        /*
         if (!register)
             throw new NotFoundException('No se ha encontrado ningún registro (buscaTodos_Emp)');
         else
             return register;
+        */
+        return register;
     }
 
     //-------------------------------------------------------------------------------------------------------------
@@ -1660,11 +1724,13 @@ export class FichaService {
                 ctoCorrelativo: v_correlativo
             }
         );
-
-        if (!register)
-            throw new HttpException('No existen registros para los parametros definidos en la consulta - (busca_procesosV_por_llave)', HttpStatus.FORBIDDEN);
-        else
-            return register;
+        /*
+                if (!register)
+                    throw new HttpException('No existen registros para los parametros definidos en la consulta - (busca_procesosV_por_llave)', HttpStatus.FORBIDDEN);
+                else
+                    return register;
+                */
+        return register;
     }
 
     //-------------------------------------------------------------------------------------------------------------

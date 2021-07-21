@@ -39,10 +39,13 @@ export class ApoyoService {
             },            
         }
         );
+        /*
         if (!register)
             throw new NotFoundException('No se ha encontrado ningún registro (buscaTodas_Uni)');
         else
             return register;
+        */
+        return register;
     }
 
     //-------------------------------------------------------------------------------------------------------------
@@ -58,11 +61,13 @@ export class ApoyoService {
                 uniCodigo: v_coduni
             }
         );
-
+        /*
         if (!register)
             throw new HttpException('No existen registros para los parametros definidos en la consulta - (busca_unidades_por_llave)', HttpStatus.FORBIDDEN);
         else
             return register;
+        */
+        return register;
     }
 
     //-------------------------------------------------------------------------------------------------------------
