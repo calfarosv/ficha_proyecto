@@ -244,7 +244,7 @@ export class FichaService {
     async buscaTodos_Emp(): Promise<Pri_Emp_Empleado_V_Entity[]> {
         const register = await this.empleadosRepository.find(
             {
-                where: { "empCodcia": "001", "empCodcel": "7309011" },
+                //where: { "empCodcia": "001", "empCodcel": "7309011" },
                 order: {
                     empCodcia: 'ASC',
                     empNombre: 'ASC'
@@ -447,14 +447,13 @@ export class FichaService {
             .orderBy('Pri_Usu_Usuarios_Entity.usuCoduni', 'ASC')
             .addOrderBy('Pri_Usu_Usuarios_Entity.usuUsuario', 'ASC')
             .getRawMany();
-        /*
-            if (!register || register.length === 0) {
-            throw new HttpException('No se encontraron datos - (buscaTodos_UsuEmp)', HttpStatus.FORBIDDEN);
+
+        if (!register || register.length === 0) {
+            return register[0];
         }
         else
             return register;
-        */
-        return register;
+
     }
 
     //-------------------------------------------------------------------------------------------------------------
@@ -947,14 +946,11 @@ export class FichaService {
             .orderBy('Pri_Fic_Ficha_Entity.ficCodigo', 'ASC')
             .addOrderBy('Pri_Fic_Ficha_Entity.ficVersion', 'ASC')
             .getRawMany();
-        /*
-    if (!register || register.length === 0) {
-        throw new HttpException('No se encontraron datos - (busca_fichas_por_llave)', HttpStatus.FORBIDDEN);
-    }
-    else
-        return register;
-    */
-        return register;
+        if (!register || register.length === 0) {
+            return register[0];
+        }
+        else
+            return register;
     }
 
     //-------------------------------------------------------------------------------------------------------------
@@ -1462,16 +1458,13 @@ export class FichaService {
             .orderBy('Pri_FicDet_Entity.fidCodfic', 'ASC')
             .addOrderBy('Pri_FicDet_Entity.fidCodver', 'ASC')
             .addOrderBy('Pri_FicDet_Entity.fidCodigo', 'ASC')
-            .getRawOne();
+            .getRawMany();
         //console.log('register: ', register);
-        /*
         if (!register || register.length === 0) {
-            throw new HttpException('No se encontraron datos - (busca_FicDet_por_llave)', HttpStatus.FORBIDDEN);
+            return register[0];
         }
         else
             return register;
-        */
-        return register;
     }
 
     //-------------------------------------------------------------------------------------------------------------

@@ -43,28 +43,15 @@ export class FichaController {
         @Param('usu_usuario') v_usuario: string
     ) {
         const data = await this.fichaService.busca_usuarios_por_llave(v_codcia, v_usuario);
-        //console.log('data: ', data);
-        // VERIFICO SI LOS DATOS OBTENIDOS SON VARIOS REGISTROS, SOLO UNO O NINGUNO
-        // PRIMERO SE DEFINE SI LOS DATOS SON UN ARREGLO O NO
-        if (Array.isArray(data)) {
-            //console.log('Es un arreglo');
-            //SI ES UN ARREGLO, SE DEVUELVE CADA REGISTRO COMO JASON (LOS CORCHETES SON AUTOMATICOS POR SER ARREGLO)
-            return data
-        }
-        else {
-            //console.log('NO es un arreglo');
-            //SI NO ES UN ARREGLO, VERIFICO SI LOS DATOS VIENEN VACIOS O NO
             if (!data) {
                 //SI LOS DATOS VIENEN VACIOS, SE DEVUELVEN CORCHETES
                 return []
             }
             else {
                 // SI LOS DATOS NO VIENEN VACIOS, ENTONCES ES SOLO 1 REGISTRO
-                // SE DEVUELVE ENTRE CORCHETES
-                return [data];
+                // POR SER UN REGISTRO CONSULTADO POR LA LLAVE, NO SE DEVUELVE ENTRE CORCHETES
+                return data;
             }
-        }
-
         //return data;}
     }
 
@@ -228,26 +215,14 @@ export class FichaController {
         //console.log('v_codcia: ', v_codcia);
         //console.log('v_codcel: ', v_codcel);
         const data = await this.fichaService.busca_empleados_por_llave(v_codcia, v_codcel);
-        //console.log('data: ', data);
-        // VERIFICO SI LOS DATOS OBTENIDOS SON VARIOS REGISTROS, SOLO UNO O NINGUNO
-        // PRIMERO SE DEFINE SI LOS DATOS SON UN ARREGLO O NO
-        if (Array.isArray(data)) {
-            //console.log('Es un arreglo');
-            //SI ES UN ARREGLO, SE DEVUELVE CADA REGISTRO COMO JASON (LOS CORCHETES SON AUTOMATICOS POR SER ARREGLO)
-            return data
+        if (!data) {
+            //SI LOS DATOS VIENEN VACIOS, SE DEVUELVEN CORCHETES
+            return []
         }
         else {
-            //console.log('NO es un arreglo');
-            //SI NO ES UN ARREGLO, VERIFICO SI LOS DATOS VIENEN VACIOS O NO
-            if (!data) {
-                //SI LOS DATOS VIENEN VACIOS, SE DEVUELVEN CORCHETES
-                return []
-            }
-            else {
-                // SI LOS DATOS NO VIENEN VACIOS, ENTONCES ES SOLO 1 REGISTRO
-                // SE DEVUELVE ENTRE CORCHETES
-                return [data];
-            }
+            // SI LOS DATOS NO VIENEN VACIOS, ENTONCES ES SOLO 1 REGISTRO
+            // POR SER UN REGISTRO CONSULTADO POR LA LLAVE, NO SE DEVUELVE ENTRE CORCHETES
+            return data;
         }
     }
     /*
@@ -374,27 +349,16 @@ export class FichaController {
     ) {
         //console.log('v_codcia: ', v_codcia);
         //console.log('v_codcel: ', v_codcel);
-        const data: any[] = await this.fichaService.busca_usuemp_por_llave(v_codcia, v_codcel);
-        //console.log('data: ', data);
-        // VERIFICO SI LOS DATOS OBTENIDOS SON VARIOS REGISTROS, SOLO UNO O NINGUNO
-        // PRIMERO SE DEFINE SI LOS DATOS SON UN ARREGLO O NO
-        if (Array.isArray(data)) {
-            //console.log('Es un arreglo');
-            //SI ES UN ARREGLO, SE DEVUELVE CADA REGISTRO COMO JASON (LOS CORCHETES SON AUTOMATICOS POR SER ARREGLO)
-            return data
+        const data = await this.fichaService.busca_usuemp_por_llave(v_codcia, v_codcel);
+        if (!data) {
+            //SI LOS DATOS VIENEN VACIOS, SE DEVUELVEN CORCHETES
+            return []
         }
         else {
-            //console.log('NO es un arreglo');
-            //SI NO ES UN ARREGLO, VERIFICO SI LOS DATOS VIENEN VACIOS O NO
-            if (!data) {
-                //SI LOS DATOS VIENEN VACIOS, SE DEVUELVEN CORCHETES
-                return []
-            }
-            else {
-                // SI LOS DATOS NO VIENEN VACIOS, ENTONCES ES SOLO 1 REGISTRO
-                // SE DEVUELVE ENTRE CORCHETES
-                return [data];
-            }
+            // SI LOS DATOS NO VIENEN VACIOS, ENTONCES ES SOLO 1 REGISTRO
+            // POR SER UN REGISTRO CONSULTADO POR LA LLAVE, NO SE DEVUELVE ENTRE CORCHETES
+            // SI EN EL SERVICIO SE USA UNA CONSULTA DINÁMICA, SE DEBE COLOCAR [0]
+            return data[0];
         }
     }
 
@@ -575,27 +539,16 @@ export class FichaController {
     ) {
         //console.log('v_codfic: ', v_codfic);
         //console.log('v_codver: ', v_codver);
-        const data: any[] = await this.fichaService.busca_fichas_por_llave(v_codfic, v_codver);
-        //console.log('data: ', data);
-        // VERIFICO SI LOS DATOS OBTENIDOS SON VARIOS REGISTROS, SOLO UNO O NINGUNO
-        // PRIMERO SE DEFINE SI LOS DATOS SON UN ARREGLO O NO
-        if (Array.isArray(data)) {
-            //console.log('Es un arreglo');
-            //SI ES UN ARREGLO, SE DEVUELVE CADA REGISTRO COMO JASON (LOS CORCHETES SON AUTOMATICOS POR SER ARREGLO)
-            return data
+        const data = await this.fichaService.busca_fichas_por_llave(v_codfic, v_codver);
+        if (!data) {
+            //SI LOS DATOS VIENEN VACIOS, SE DEVUELVEN CORCHETES
+            return []
         }
         else {
-            //console.log('NO es un arreglo');
-            //SI NO ES UN ARREGLO, VERIFICO SI LOS DATOS VIENEN VACIOS O NO
-            if (!data) {
-                //SI LOS DATOS VIENEN VACIOS, SE DEVUELVEN CORCHETES
-                return []
-            }
-            else {
-                // SI LOS DATOS NO VIENEN VACIOS, ENTONCES ES SOLO 1 REGISTRO
-                // SE DEVUELVE ENTRE CORCHETES
-                return [data];
-            }
+            // SI LOS DATOS NO VIENEN VACIOS, ENTONCES ES SOLO 1 REGISTRO
+            // POR SER UN REGISTRO CONSULTADO POR LA LLAVE, NO SE DEVUELVE ENTRE CORCHETES
+            // SI EN EL SERVICIO SE USA UNA CONSULTA DINÁMICA, SE DEBE COLOCAR [0]
+            return data[0];
         }
 
     }
@@ -821,27 +774,22 @@ export class FichaController {
         @Param('fid_codver') v_codver: number,
         @Param('fid_codigo') v_codigo: number
     ) {
-        const data: any[] = await this.fichaService.busca_FicDet_por_llave(v_codfic, v_codver, v_codigo);
+        //console.log('v_codfic: ', v_codfic);
+        //console.log('v_codver: ', v_codver);
+        //console.log('v_codigo: ', v_codigo);        
+        const data = await this.fichaService.busca_FicDet_por_llave(v_codfic, v_codver, v_codigo);
         //console.log('data: ', data);
-        // VERIFICO SI LOS DATOS OBTENIDOS SON VARIOS REGISTROS, SOLO UNO O NINGUNO
-        // PRIMERO SE DEFINE SI LOS DATOS SON UN ARREGLO O NO
-        if (Array.isArray(data)) {
-            //console.log('Es un arreglo');
-            //SI ES UN ARREGLO, SE DEVUELVE CADA REGISTRO COMO JASON (LOS CORCHETES SON AUTOMATICOS POR SER ARREGLO)
-            return data
+        //console.log('NO data');
+        //console.log('DATA');
+        if (!data) {
+            //SI LOS DATOS VIENEN VACIOS, SE DEVUELVEN CORCHETES
+            return []
         }
         else {
-            //console.log('NO es un arreglo');
-            //SI NO ES UN ARREGLO, VERIFICO SI LOS DATOS VIENEN VACIOS O NO
-            if (!data) {
-                //SI LOS DATOS VIENEN VACIOS, SE DEVUELVEN CORCHETES
-                return []
-            }
-            else {
-                // SI LOS DATOS NO VIENEN VACIOS, ENTONCES ES SOLO 1 REGISTRO
-                // SE DEVUELVE ENTRE CORCHETES
-                return [data];
-            }
+            // SI LOS DATOS NO VIENEN VACIOS, ENTONCES ES SOLO 1 REGISTRO
+            // POR SER UN REGISTRO CONSULTADO POR LA LLAVE, NO SE DEVUELVE ENTRE CORCHETES
+            // SI EN EL SERVICIO SE USA UNA CONSULTA DINÁMICA, SE DEBE COLOCAR [0]
+            return data[0];
         }
 
     }
@@ -969,26 +917,14 @@ export class FichaController {
         //console.log('v_codcia: ', v_codcia);
         //console.log('v_codcel: ', v_codcel);
         const data = await this.fichaService.busca_procesosV_por_llave(v_cto_ciacodcia, v_cto_correlativo);
-        //console.log('data: ', data);
-        // VERIFICO SI LOS DATOS OBTENIDOS SON VARIOS REGISTROS, SOLO UNO O NINGUNO
-        // PRIMERO SE DEFINE SI LOS DATOS SON UN ARREGLO O NO
-        if (Array.isArray(data)) {
-            //console.log('Es un arreglo');
-            //SI ES UN ARREGLO, SE DEVUELVE CADA REGISTRO COMO JASON (LOS CORCHETES SON AUTOMATICOS POR SER ARREGLO)
-            return data
+        if (!data) { 
+            //SI LOS DATOS VIENEN VACIOS, SE DEVUELVEN CORCHETES
+            return []
         }
         else {
-            //console.log('NO es un arreglo');
-            //SI NO ES UN ARREGLO, VERIFICO SI LOS DATOS VIENEN VACIOS O NO
-            if (!data) {
-                //SI LOS DATOS VIENEN VACIOS, SE DEVUELVEN CORCHETES
-                return []
-            }
-            else {
-                // SI LOS DATOS NO VIENEN VACIOS, ENTONCES ES SOLO 1 REGISTRO
-                // SE DEVUELVE ENTRE CORCHETES
-                return [data];
-            }
+            // SI LOS DATOS NO VIENEN VACIOS, ENTONCES ES SOLO 1 REGISTRO
+            // POR SER UN REGISTRO CONSULTADO POR LA LLAVE, NO SE DEVUELVE ENTRE CORCHETES
+            return data;
         }
     }
 
