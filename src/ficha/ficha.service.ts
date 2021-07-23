@@ -1405,7 +1405,7 @@ export class FichaService {
         //console.log('v_fid_codver: ', v_fid_codver);
         //console.log('v_fid_codigo: ', v_fid_codigo);
         const register = await this.fichasDetRepository.createQueryBuilder()
-            .select('Pri_FicDet_Entity.fidCodfic', 'fidCodfic1')
+            .select('Pri_FicDet_Entity.fidCodfic', 'fidCodfic')
             .addSelect('Pri_FicDet_Entity.fidCodver', 'fidCodver')
             .addSelect('Pri_FicDet_Entity.fidCodigo', 'fidCodigo')
             .addSelect('Pri_FicDet_Entity.fidTipo', 'fidTipo')
@@ -1514,7 +1514,7 @@ export class FichaService {
             //console.log('8', v_where);
         }
         const register = await this.fichasDetRepository.createQueryBuilder()
-            .select('Pri_FicDet_Entity.fidCodfic', 'fidCodfic1')
+            .select('Pri_FicDet_Entity.fidCodfic', 'fidCodfic')
             .addSelect('Pri_FicDet_Entity.fidCodver', 'fidCodver')
             .addSelect('Pri_FicDet_Entity.fidCodigo', 'fidCodigo')
             .addSelect('Pri_FicDet_Entity.fidTipo', 'fidTipo')
