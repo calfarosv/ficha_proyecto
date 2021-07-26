@@ -116,6 +116,21 @@ export class Pri_Prc_Procesos_Cont_V_Entity {
     @Column("number", { name: "MTC_MONTO_ACT", precision: 20, })
     mtcMontoAct?: number;
     //-----------------------------------------------------------------------------------------
+    @Column("number", { name: "PLAZO_ORIG", precision: 20, })
+    plazoOrig?: number;
+    //-----------------------------------------------------------------------------------------
+    @Column("number", { name: "PLAZO_ACTUAL", precision: 20, })
+    plazoActual?: number;
+    //-----------------------------------------------------------------------------------------
+    @Column("number", { name: "PRORROGA", precision: 20, })
+    prorroga?: number;
+    //-----------------------------------------------------------------------------------------
+    @Column("number", { name: "MONTO_ANTICIPO", precision: 20, scale: 2, })
+    montoAnticipo?: number;
+    //-----------------------------------------------------------------------------------------
+    @Column("number", { name: "MONTO_PAGADO", precision: 20, scale: 2, })
+    montoPagado?: number;
+    //-----------------------------------------------------------------------------------------
 
 
 }

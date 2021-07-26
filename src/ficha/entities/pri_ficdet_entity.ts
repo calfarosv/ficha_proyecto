@@ -121,6 +121,12 @@ export class Pri_FicDet_Entity {
     @Type(() => Date)
     fidFecMod?: Date;
     //-----------------------------------------------------------------------------------------
+    @Column("number", { name: "FID_PRORROGA", precision: 10, scale: 0, })
+    fidProrroga?: number;
+    //-----------------------------------------------------------------------------------------
+    @Column("number", { name: "FID_AVAFISICO", precision: 6, scale: 2, })
+    fidAvaFisico?: number;
+    //-----------------------------------------------------------------------------------------
 
 
     @ManyToOne

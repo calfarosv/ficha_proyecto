@@ -1348,6 +1348,8 @@ export class FichaService {
             .addSelect('Pri_FicDet_Entity.fidFecCrea', 'fidFecCrea')
             .addSelect('Pri_FicDet_Entity.fidUsuarioMod', 'fidUsuarioMod')
             .addSelect('Pri_FicDet_Entity.fidFecMod', 'fidFecMod')
+            .addSelect('Pri_FicDet_Entity.fidProrroga', 'fidProrroga')
+            .addSelect('Pri_FicDet_Entity.fidAvaFisico', 'fidAvaFisico')
             //
             .addSelect('Pri_Emp_Empleado_V_Entity_b.empNombre', 'empNombre_adm')
             .addSelect('Pri_Emp_Empleado_V_Entity.empNombre', 'empNombre_sup')
@@ -1440,6 +1442,8 @@ export class FichaService {
             .addSelect('Pri_FicDet_Entity.fidFecCrea', 'fidFecCrea')
             .addSelect('Pri_FicDet_Entity.fidUsuarioMod', 'fidUsuarioMod')
             .addSelect('Pri_FicDet_Entity.fidFecMod', 'fidFecMod')
+            .addSelect('Pri_FicDet_Entity.fidProrroga', 'fidProrroga')
+            .addSelect('Pri_FicDet_Entity.fidAvaFisico', 'fidAvaFisico')
             //
             .addSelect('Pri_Emp_Empleado_V_Entity_b.empNombre', 'empNombre_adm')
             .addSelect('Pri_Emp_Empleado_V_Entity.empNombre', 'empNombre_sup')
@@ -1549,6 +1553,8 @@ export class FichaService {
             .addSelect('Pri_FicDet_Entity.fidFecCrea', 'fidFecCrea')
             .addSelect('Pri_FicDet_Entity.fidUsuarioMod', 'fidUsuarioMod')
             .addSelect('Pri_FicDet_Entity.fidFecMod', 'fidFecMod')
+            .addSelect('Pri_FicDet_Entity.fidProrroga', 'fidProrroga')
+            .addSelect('Pri_FicDet_Entity.fidAvaFisico', 'fidAvaFisico')
             //
             .addSelect('Pri_Emp_Empleado_V_Entity_b.empNombre', 'empNombre_adm')
             .addSelect('Pri_Emp_Empleado_V_Entity.empNombre', 'empNombre_sup')
@@ -1678,7 +1684,7 @@ export class FichaService {
 
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-    // FICHA DETALLE - VISTA PROCESOS
+    // VISTA PROCESOS
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
     //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 

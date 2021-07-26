@@ -189,5 +189,14 @@ export class Create_Pri_Fid_Dto {
     @Type(() => Date)
     fidFecMod?: Date;
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
+    @IsNumber()
+    @IsOptional()    
+    @ApiProperty({ description: 'CANTIDAD DE DIAS EN LA QUE HA SIDO PRORROGADO UN CONTRATO', type: Number, })
+    fidProrroga?: number;
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    @IsNumber()
+    @IsOptional()
+    @ApiProperty({ description: 'PORCENTAJE FISICO DEL PROCESO DE ADQUISICION', type: Number, })
+    fidAvaFisico?: number;
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 }
