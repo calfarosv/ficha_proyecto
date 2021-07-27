@@ -215,6 +215,9 @@ export class Pri_Fic_Ficha_Entity {
     @Type(() => Date)
     ficFecMod?: Date;
     //-----------------------------------------------------------------------------------------
+    @Column("varchar2", { name: "FIC_ESTADO", length: 1 })
+    ficEstado?: string;    
+    
 
 
     @OneToMany

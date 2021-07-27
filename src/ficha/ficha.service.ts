@@ -669,6 +669,7 @@ export class FichaService {
             .addSelect('Pri_Fic_Ficha_Entity.ficFecCrea', 'ficFecCrea')
             .addSelect('Pri_Fic_Ficha_Entity.ficUsuarioMod', 'ficUsuarioMod')
             .addSelect('Pri_Fic_Ficha_Entity.ficFecMod', 'ficFecMod')
+            .addSelect('Pri_Fic_Ficha_Entity.ficEstado', 'ficEstado')
             //
             .addSelect('Pla_Uni_Unidad_Entity.uniNombre', 'uniNombre_sol')
             .addSelect('Pla_Uni_Unidad_Entity_b.uniNombre', 'uniNombre_eje')
@@ -791,6 +792,7 @@ export class FichaService {
             .addSelect('Pri_Fic_Ficha_Entity.ficFecCrea', 'ficFecCrea')
             .addSelect('Pri_Fic_Ficha_Entity.ficUsuarioMod', 'ficUsuarioMod')
             .addSelect('Pri_Fic_Ficha_Entity.ficFecMod', 'ficFecMod')
+            .addSelect('Pri_Fic_Ficha_Entity.ficEstado', 'ficEstado')
             ///
             .addSelect('Pla_Uni_Unidad_Entity.uniNombre', 'uniNombre_sol')
             .addSelect('Pla_Uni_Unidad_Entity_b.uniNombre', 'uniNombre_eje')
@@ -930,6 +932,7 @@ export class FichaService {
             .addSelect('Pri_Fic_Ficha_Entity.ficFecCrea', 'ficFecCrea')
             .addSelect('Pri_Fic_Ficha_Entity.ficUsuarioMod', 'ficUsuarioMod')
             .addSelect('Pri_Fic_Ficha_Entity.ficFecMod', 'ficFecMod')
+            .addSelect('Pri_Fic_Ficha_Entity.ficEstado', 'ficEstado')
             //
             .addSelect('Pla_Uni_Unidad_Entity.uniNombre', 'uniNombre_sol')
             .addSelect('Pla_Uni_Unidad_Entity_b.uniNombre', 'uniNombre_eje')
@@ -1023,6 +1026,7 @@ export class FichaService {
             .addSelect('Pri_Fic_Ficha_Entity.ficFecCrea', 'ficFecCrea')
             .addSelect('Pri_Fic_Ficha_Entity.ficUsuarioMod', 'ficUsuarioMod')
             .addSelect('Pri_Fic_Ficha_Entity.ficFecMod', 'ficFecMod')
+            .addSelect('Pri_Fic_Ficha_Entity.ficEstado', 'ficEstado')
             //
             .addSelect('Pla_Uni_Unidad_Entity.uniNombre', 'uniNombre_sol')
             .addSelect('Pla_Uni_Unidad_Entity_b.uniNombre', 'uniNombre_eje')
@@ -1156,6 +1160,7 @@ export class FichaService {
             .addSelect('Pri_Fic_Ficha_Entity.ficFecCrea', 'ficFecCrea')
             .addSelect('Pri_Fic_Ficha_Entity.ficUsuarioMod', 'ficUsuarioMod')
             .addSelect('Pri_Fic_Ficha_Entity.ficFecMod', 'ficFecMod')
+            .addSelect('Pri_Fic_Ficha_Entity.ficEstado', 'ficEstado')
             //
             .addSelect('Pla_Uni_Unidad_Entity.uniNombre', 'uniNombre_sol')
             .addSelect('Pla_Uni_Unidad_Entity_b.uniNombre', 'uniNombre_eje')

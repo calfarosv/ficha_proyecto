@@ -338,5 +338,11 @@ export class Create_Pri_Fic_Dto {
     @Type(() => Date)
     ficFecMod?: Date;
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    @IsString()
+    @IsOptional()
+    @ApiProperty({ description: 'ESTADO DE LA FICHA', type: String, })
+    ficEstado?: string;
+
+    
 
 }
