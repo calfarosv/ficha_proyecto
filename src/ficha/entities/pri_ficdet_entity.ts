@@ -47,7 +47,7 @@ export class Pri_FicDet_Entity {
     @Column("varchar2", { name: "FID_OBSERVACIONES", length: 1000 })
     fidObservaciones?: string;
     //-----------------------------------------------------------------------------------------
-    @Column("varchar2", { name: "FID_ORI_CODLIC", length: 15 })
+    @Column("varchar2", { name: "FID_ORI_CODLIC", length: 25 })
     fidOriCodlic?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "FID_CODCTC", length: 2 })
