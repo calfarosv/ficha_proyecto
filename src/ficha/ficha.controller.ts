@@ -906,17 +906,17 @@ export class FichaController {
     //-------------------------------------------------------------------------------------------------------------
 
     @ApiHeader({
-        name: 'Controlador: @Get(/empleados/by_pk/:emp_codcia/:emp_codcel)',
+        name: 'Controlador: @Get(/empleados/contrato/:emp_codcia/:emp_codcel)',
         description: 'Obtiene registro a partir de parametros enviados en el URL',
     })
-    @Get('/detalle/procesos/by_pk/:cto_ciacodcia/:cto_correlativo')
-    async obtiene_procesosV_por_llave(
-        @Param('cto_ciacodcia') v_cto_ciacodcia: string,
-        @Param('cto_correlativo') v_cto_correlativo: number
+    @Get('/detalle/procesos/contrato/:codcia/:codproceso')
+    async obtiene_procesosV_por_contrato(
+        @Param('codcia') v_codcia: string,
+        @Param('codproceso') v_codproceso: string
     ) {
         //console.log('v_codcia: ', v_codcia);
         //console.log('v_codcel: ', v_codcel);
-        const data = await this.fichaService.busca_procesosV_por_llave(v_cto_ciacodcia, v_cto_correlativo);
+        const data = await this.fichaService.busca_procesosV_por_contrato(v_codcia, v_codproceso);
         if (!data) { 
             //SI LOS DATOS VIENEN VACIOS, SE DEVUELVEN CORCHETES
             return []
@@ -928,7 +928,36 @@ export class FichaController {
         }
     }
 
+    //-------------------------------------------------------------------------------------------------------------
 
+    @ApiHeader({
+        name: 'Controlador: @Get(/empleados/contratos/:emp_codcia/:emp_codcel)',
+        description: 'Obtiene registro a partir de parametros enviados en el URL',
+    })
+    @Get('/detalle/procesos/ordcom/:codcia/:codreq/:codrsc/:codentreq/:anioreq')
+    async obtiene_procesosV_por_llave(
+        @Param('codcia') v_codcia: string,
+        @Param('codreq') v_codreq: number,
+        @Param('codrsc') v_codrsc: number,
+        @Param('codentreq') v_codentreq: string,
+        @Param('anioreq') v_anioreq: number
+    ) {
+        //console.log('v_codcia: ', v_codcia);
+        //console.log('v_codreq: ', v_codreq);
+        //console.log('v_codrsc: ', v_codrsc);
+        //console.log('v_codentreq: ', v_codentreq);
+        //console.log('v_anioreq: ', v_anioreq);
+        const data = await this.fichaService.busca_procesosV_por_ordcom(v_codcia, v_codreq, v_codrsc, v_codentreq, v_anioreq);
+        if (!data) { 
+            //SI LOS DATOS VIENEN VACIOS, SE DEVUELVEN CORCHETES
+            return []
+        }
+        else {
+            // SI LOS DATOS NO VIENEN VACIOS, ENTONCES ES SOLO 1 REGISTRO
+            // POR SER UN REGISTRO CONSULTADO POR LA LLAVE, NO SE DEVUELVE ENTRE CORCHETES
+            return data;
+        }
+    }
 
 
 } ///// PRINCIPAL

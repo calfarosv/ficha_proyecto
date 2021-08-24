@@ -1698,11 +1698,11 @@ export class FichaService {
         description: 'BUSCA TODOS LOS REGISTROS DE LA VISTA DE PROCESOS',
     })
     async buscaTodos_ProV(): Promise<Pri_Prc_Procesos_Cont_V_Entity[]> {
-        const register = await this.procesosVRepository.find(
+        const register = await this.procesosVRepository.find
+        (
             {
                 order: {
-                    ctoCiaCodcia: 'ASC',
-                    ctoCorrelativo: 'ASC'
+                    codcia: 'ASC'//, ctoCorrelativo: 'ASC'
                 }
             }
         );
@@ -1721,27 +1721,90 @@ export class FichaService {
         name: 'Servicio: busca_empleados_por_llave(v_codcia: string, v_codcel: string): Promise<Pri_Emp_Empleado_V_Entity>',
         description: 'Busca registro a partir de parametros enviados en el URL',
     })
-    async busca_procesosV_por_llave(v_ciacodcia: string, v_correlativo: number): Promise<Pri_Prc_Procesos_Cont_V_Entity> {
+    async busca_procesosV_por_contrato(v_codcia: string, v_codproceso: string): Promise<Pri_Prc_Procesos_Cont_V_Entity> {
         const register = await this.procesosVRepository.findOne(
             {
-                ctoCiaCodcia: v_ciacodcia,
-                ctoCorrelativo: v_correlativo
+                codcia: v_codcia, codProceso: v_codproceso
             }
         );
-        /*
-                if (!register)
-                    throw new HttpException('No existen registros para los parametros definidos en la consulta - (busca_procesosV_por_llave)', HttpStatus.FORBIDDEN);
-                else
-                    return register;
-                */
+
         return register;
     }
 
+
     //-------------------------------------------------------------------------------------------------------------
 
+    @ApiHeader({
+        name: 'Servicio: busca_procesosV_por_ordcom(v_codcia: string, v_codreq: number, v_codrsc: number, v_codentreq: string, v_anioreq: number)',
+        description: 'BUSCA REGISTRO POR LA LLAVE',
+    })
+    async busca_procesosV_por_ordcom(v_codcia: string, v_codreq: number, v_codrsc: number, v_codentreq: string, v_anioreq: number) {
+        //console.log('v_codcia: ', v_codcia);
+        //console.log('v_codreq: ', v_codreq);
+        //console.log('v_codrsc: ', v_codrsc);
+        //console.log('v_codentreq: ', v_codentreq);
+        //console.log('v_anioreq: ', v_anioreq);
+        const register = await this.procesosVRepository.createQueryBuilder()
+        .select('Pri_Prc_Procesos_Cont_V_Entity.codcia', 'codcia')
+        .addSelect('Pri_Prc_Procesos_Cont_V_Entity.codProceso', 'codProceso')
+        .addSelect('Pri_Prc_Procesos_Cont_V_Entity.tipoProceso', 'tipoProceso')
+        .addSelect('Pri_Prc_Procesos_Cont_V_Entity.ctoCorrelativo', 'ctoCorrelativo')
+        .addSelect('Pri_Prc_Procesos_Cont_V_Entity.ctoId', 'ctoId')
+        .addSelect('Pri_Prc_Procesos_Cont_V_Entity.codoco', 'codoco')
+        .addSelect('Pri_Prc_Procesos_Cont_V_Entity.anioOco', 'anioOco')
+        .addSelect('Pri_Prc_Procesos_Cont_V_Entity.codRsc', 'codRsc')
+        .addSelect('Pri_Prc_Procesos_Cont_V_Entity.descProceso', 'descProceso')
+        .addSelect('Pri_Prc_Procesos_Cont_V_Entity.contratista', 'contratista')
+        .addSelect('Pri_Prc_Procesos_Cont_V_Entity.codentiProceso', 'codentiProceso')
+        .addSelect('Pri_Prc_Procesos_Cont_V_Entity.entidadProceso', 'entidadProceso')
+        .addSelect('Pri_Prc_Procesos_Cont_V_Entity.numProcesoOrigen', 'numProcesoOrigen')
+        .addSelect('Pri_Prc_Procesos_Cont_V_Entity.codentReq', 'codentReq')
+        .addSelect('Pri_Prc_Procesos_Cont_V_Entity.codctcReq', 'codctcReq')
+        .addSelect('Pri_Prc_Procesos_Cont_V_Entity.codreq', 'codreq')
+        .addSelect('Pri_Prc_Procesos_Cont_V_Entity.anioReq', 'anioReq')
+        .addSelect('Pri_Prc_Procesos_Cont_V_Entity.nombreProcesoOrigen', 'nombreProcesoOrigen')
+        .addSelect('Pri_Prc_Procesos_Cont_V_Entity.estadoProcesoOrigen', 'estadoProcesoOrigen')
+        .addSelect('Pri_Prc_Procesos_Cont_V_Entity.nestadoProcesoOrigen', 'nestadoProcesoOrigen')
+        .addSelect('Pri_Prc_Procesos_Cont_V_Entity.resultProcesoOrigen', 'resultProcesoOrigen')
+        .addSelect('Pri_Prc_Procesos_Cont_V_Entity.nresultProcesoOrigen', 'nresultProcesoOrigen')
+        .addSelect('Pri_Prc_Procesos_Cont_V_Entity.montoProcesoOrigen', 'montoProcesoOrigen')
+        .addSelect('Pri_Prc_Procesos_Cont_V_Entity.codofeProceso', 'codofeProceso')
+        .addSelect('Pri_Prc_Procesos_Cont_V_Entity.codEstado', 'codEstado')
+        .addSelect('Pri_Prc_Procesos_Cont_V_Entity.descEstado', 'descEstado')
+        .addSelect('Pri_Prc_Procesos_Cont_V_Entity.fechaInicio', 'fechaInicio')
+        .addSelect('Pri_Prc_Procesos_Cont_V_Entity.fechaFinOrig', 'fechaFinOrig')
+        .addSelect('Pri_Prc_Procesos_Cont_V_Entity.fechaFinActual', 'fechaFinActual')
+        .addSelect('Pri_Prc_Procesos_Cont_V_Entity.nombreAdmin', 'nombreAdmin')
+        .addSelect('Pri_Prc_Procesos_Cont_V_Entity.codcelAdmin', 'codcelAdmin')
+        .addSelect('Pri_Prc_Procesos_Cont_V_Entity.montoOrig', 'montoOrig')
+        .addSelect('Pri_Prc_Procesos_Cont_V_Entity.montoActual', 'montoActual')
+        .addSelect('Pri_Prc_Procesos_Cont_V_Entity.plazoOrig', 'plazoOrig')
+        .addSelect('Pri_Prc_Procesos_Cont_V_Entity.plazoActual', 'plazoActual')
+        .addSelect('Pri_Prc_Procesos_Cont_V_Entity.prorroga', 'prorroga')
+        .addSelect('Pri_Prc_Procesos_Cont_V_Entity.montoAnticipo', 'montoAnticipo')
+        .addSelect('Pri_Prc_Procesos_Cont_V_Entity.montoPagado', 'montoPagado')
+            //
+            .where('Pri_Prc_Procesos_Cont_V_Entity.codcia = :par_codcia and Pri_Prc_Procesos_Cont_V_Entity.codreq = :par_codreq and Pri_Prc_Procesos_Cont_V_Entity.codRsc = :par_codrsc and Pri_Prc_Procesos_Cont_V_Entity.codentReq = :par_codentreq and Pri_Prc_Procesos_Cont_V_Entity.anioReq = :par_anioreq',
+                {
+                    par_codcia: v_codcia,
+                    par_codreq: v_codreq,
+                    par_codrsc: v_codrsc,
+                    par_codentreq: v_codentreq,
+                    par_anioreq: v_anioreq
+                })
+            //
+            .orderBy('Pri_Prc_Procesos_Cont_V_Entity.codcia', 'ASC')
+            .addOrderBy('Pri_Prc_Procesos_Cont_V_Entity.codProceso', 'ASC')
+            .getRawMany();
+        //console.log('register: ', register);
+        if (!register || register.length === 0) {
+            return register[0];
+        }
+        else
+            return register;
+    }
 
-
-
+    //-------------------------------------------------------------------------------------------------------------
 
 
 } ////// PRINCIPAL

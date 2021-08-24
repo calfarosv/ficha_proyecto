@@ -1,62 +1,63 @@
 import { Type } from "class-transformer";
 import { Column, Entity, Index, PrimaryColumn } from "typeorm";
 
-@Index("PRI_PRC_PK", ["ctoCiaCodcia", "ctoCorrelativo"], { unique: true })
+@Index("PRI_PRC_PK", ["codcia", "codProceso"], { unique: true })
 @Entity("PRI_PRC_PROCESOS_CONT_V")
 
 export class Pri_Prc_Procesos_Cont_V_Entity {
-    @PrimaryColumn()
-    @Column("varchar2", { primary: true, name: "CTO_CIA_CODCIA", length: 3, })
-    ctoCiaCodcia?: string;
     //-----------------------------------------------------------------------------------------
     @PrimaryColumn()
-    @Column("number", { primary: true, name: "CTO_CORRELATIVO", precision: 20, })
+    @Column("varchar2", { primary: true, name: "CODCIA", length: 3, })
+    codcia?: string;
+    //-----------------------------------------------------------------------------------------
+    @PrimaryColumn()
+    @Column("varchar2", { primary: true, name: "COD_PROCESO", length: 81, })
+    codProceso?: string;
+    //-----------------------------------------------------------------------------------------
+    @Column("varchar2", { name: "TIPO_PROCESO", length: 3, })
+    tipoProceso?: string;
+    //-----------------------------------------------------------------------------------------
+    @Column("number", { name: "CTO_CORRELATIVO", precision: 20, })
     ctoCorrelativo?: number;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CTO_ID", length: 20, })
     ctoId?: string;
     //-----------------------------------------------------------------------------------------
-    @Column("varchar2", { name: "CTO_OBJETO", length: 1000, })
-    ctoObjeto?: string;
+    @Column("number", { name: "CODOCO", precision: 20, })
+    codoco?: number;
     //-----------------------------------------------------------------------------------------
-    @Column("varchar2", { name: "CTO_TIPO", length: 15, })
-    ctoTipo?: string;
+    @Column("number", { name: "ANIO_OCO", precision: 4, })
+    anioOco?: number;
     //-----------------------------------------------------------------------------------------
-    @Column("varchar2", { name: "CTO_TIPO_CONTRATO", length: 2, })
-    ctoTipoContrato?: string;
+    @Column("number", { name: "COD_RSC", precision: 20, })
+    codRsc?: number;
+    //-----------------------------------------------------------------------------------------
+    @Column("varchar2", { name: "DESC_PROCESO", length: 1000, })
+    descProceso?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "CONTRATISTA", length: 150, })
     contratista?: string;
     //-----------------------------------------------------------------------------------------
-    @Column("varchar2", { name: "TIPO_CONTRATO", length: 50, })
-    tipoContrato?: string;
+    @Column("varchar2", { name: "CODENTI_PROCESO", length: 3, })
+    codentiProceso?: string;
     //-----------------------------------------------------------------------------------------
-    @Column("varchar2", { name: "CTO_CODENTI", length: 3, })
-    ctoCodenti?: string;
-    //-----------------------------------------------------------------------------------------
-    @Column("varchar2", { name: "ENTIDAD", length: 80, })
-    entidad?: string;
-    //-----------------------------------------------------------------------------------------
-    @Column("number", { name: "CTO_ORIGEN", precision: 2, })
-    ctoOrigen?: number;
-    //-----------------------------------------------------------------------------------------
-    @Column("varchar2", { name: "ORIGEN", length: 50, })
-    origen?: string;
+    @Column("varchar2", { name: "ENTIDAD_PROCESO", length: 80, })
+    entidadProceso?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "NUM_PROCESO_ORIGEN", length: 56, })
     numProcesoOrigen?: string;
     //-----------------------------------------------------------------------------------------
-    @Column("varchar2", { name: "COT_REQ_CODENT", length: 3, })
-    cotReqCodent?: string;
+    @Column("varchar2", { name: "CODENT_REQ", length: 3, })
+    codentReq?: string;
     //-----------------------------------------------------------------------------------------
-    @Column("varchar2", { name: "COT_REQ_CODCTC", length: 2, })
-    cotReqCodctc?: string;
+    @Column("varchar2", { name: "CODCTC_REQ", length: 2, })
+    codctcReq?: string;
     //-----------------------------------------------------------------------------------------
-    @Column("number", { name: "COT_REQ_REQ_ID", precision: 20, })
-    cotReqReqId?: number;
+    @Column("number", { name: "CODREQ", precision: 20, })
+    codreq?: number;
     //-----------------------------------------------------------------------------------------
-    @Column("number", { name: "COT_REQ_ANIO", precision: 20, })
-    cotReqAnio?: number;
+    @Column("number", { name: "ANIO_REQ", precision: 4, })
+    anioReq?: number;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "NOMBRE_PROCESO_ORIGEN", length: 1000, })
     nombreProcesoOrigen?: string;
@@ -67,7 +68,7 @@ export class Pri_Prc_Procesos_Cont_V_Entity {
     @Column("varchar2", { name: "NESTADO_PROCESO_ORIGEN", length: 50, })
     nestadoProcesoOrigen?: string;
     //-----------------------------------------------------------------------------------------
-    @Column("varchar2", { name: "RESULT_PROCESO_ORIGEN", length: 1, })
+    @Column("varchar2", { name: "RESULT_PROCESO_ORIGEN", length: 3, })
     resultProcesoOrigen?: string;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "NRESULT_PROCESO_ORIGEN", length: 10, })
@@ -76,33 +77,26 @@ export class Pri_Prc_Procesos_Cont_V_Entity {
     @Column("number", { name: "MONTO_PROCESO_ORIGEN", precision: 20, })
     montoProcesoOrigen?: number;
     //-----------------------------------------------------------------------------------------
-    @Column("timestamp", { name: "CTO_FEC_FIRMA_CONT", })
+    @Column("varchar2", { name: "CODOFE_PROCESO", length: 12, })
+    codofeProceso?: string;
+    //-----------------------------------------------------------------------------------------
+    @Column("varchar2", { name: "COD_ESTADO", length: 40, })
+    codEstado?: string;
+    //-----------------------------------------------------------------------------------------
+    @Column("varchar2", { name: "DESC_ESTADO", length: 50, })
+    descEstado?: string;
+    //-----------------------------------------------------------------------------------------
+    @Column("timestamp", { name: "FECHA_INICIO", })
     @Type(() => Date)
-    ctoFecFirmaCont?: Date;
+    fechaInicio?: Date;
     //-----------------------------------------------------------------------------------------
-    @Column("varchar2", { name: "CTO_PRO_CODIGO", length: 12, })
-    ctoProCodigo?: string;
-    //-----------------------------------------------------------------------------------------
-    @Column("number", { name: "CTO_ESTADO", precision: 2, })
-    ctoEstado?: number;
-    //-----------------------------------------------------------------------------------------
-    @Column("varchar2", { name: "ESTADO", length: 50, })
-    estado?: string;
-    //-----------------------------------------------------------------------------------------
-    @Column("timestamp", { name: "CTO_FEC_INICIO", })
+    @Column("timestamp", { name: "FECHA_FIN_ORIG", })
     @Type(() => Date)
-    ctoFecInicio?: Date;
+    fechaFinOrig?: Date;
     //-----------------------------------------------------------------------------------------
-    @Column("timestamp", { name: "CTO_FEC_FIN_ORIG", })
+    @Column("timestamp", { name: "FECHA_FIN_ACTUAL", })
     @Type(() => Date)
-    ctoFecFinOrig?: Date;
-    //-----------------------------------------------------------------------------------------
-    @Column("timestamp", { name: "CTO_FEC_FIN", })
-    @Type(() => Date)
-    ctoFecFin?: Date;
-    //-----------------------------------------------------------------------------------------
-    @Column("varchar2", { name: "CERTIFICA", length: 4000, })
-    certifica?: string;
+    fechaFinActual?: Date;
     //-----------------------------------------------------------------------------------------
     @Column("varchar2", { name: "NOMBRE_ADMIN", length: 100, })
     nombreAdmin?: string;
@@ -110,11 +104,11 @@ export class Pri_Prc_Procesos_Cont_V_Entity {
     @Column("varchar2", { name: "CODCEL_ADMIN", length: 8, })
     codcelAdmin?: string;
     //-----------------------------------------------------------------------------------------
-    @Column("number", { name: "MTC_MONTO", precision: 20, })
-    mtcMonto?: number;
+    @Column("number", { name: "MONTO_ORIG", precision: 20, })
+    montoOrig?: number;
     //-----------------------------------------------------------------------------------------
-    @Column("number", { name: "MTC_MONTO_ACT", precision: 20, })
-    mtcMontoAct?: number;
+    @Column("number", { name: "MONTO_ACTUAL", precision: 20, })
+    montoActual?: number;
     //-----------------------------------------------------------------------------------------
     @Column("number", { name: "PLAZO_ORIG", precision: 20, })
     plazoOrig?: number;
@@ -125,12 +119,11 @@ export class Pri_Prc_Procesos_Cont_V_Entity {
     @Column("number", { name: "PRORROGA", precision: 20, })
     prorroga?: number;
     //-----------------------------------------------------------------------------------------
-    @Column("number", { name: "MONTO_ANTICIPO", precision: 20, scale: 2, })
+    @Column("number", { name: "MONTO_ANTICIPO", precision: 20, })
     montoAnticipo?: number;
     //-----------------------------------------------------------------------------------------
-    @Column("number", { name: "MONTO_PAGADO", precision: 20, scale: 2, })
+    @Column("number", { name: "MONTO_PAGADO", precision: 20, })
     montoPagado?: number;
     //-----------------------------------------------------------------------------------------
-
 
 }
