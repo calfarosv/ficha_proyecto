@@ -127,6 +127,13 @@ export class Pri_FicDet_Entity {
     @Column("number", { name: "FID_AVAFISICO", precision: 6, scale: 2, })
     fidAvaFisico?: number;
     //-----------------------------------------------------------------------------------------
+    @Column("number", { name: "FID_COD_RSC", precision: 10, scale: 0, })
+    fidCodRsc?: number;
+    //-----------------------------------------------------------------------------------------
+    @Column("varchar2", { name: "FID_CTO_ID", length: 20 })
+    fidCtoId?: string;
+    //-----------------------------------------------------------------------------------------
+
 
 
     @ManyToOne

@@ -955,7 +955,7 @@ export class FichaController {
         else {
             // SI LOS DATOS NO VIENEN VACIOS, ENTONCES ES SOLO 1 REGISTRO
             // POR SER UN REGISTRO CONSULTADO POR LA LLAVE, NO SE DEVUELVE ENTRE CORCHETES
-            return data;
+            return data[0];
         }
     }
 

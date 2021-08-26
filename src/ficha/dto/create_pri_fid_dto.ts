@@ -199,4 +199,17 @@ export class Create_Pri_Fid_Dto {
     @ApiProperty({ description: 'PORCENTAJE FISICO DEL PROCESO DE ADQUISICION', type: Number, })
     fidAvaFisico?: number;
     //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    @IsNumber()
+    @IsOptional()    
+    @ApiProperty({ description: 'CODIGO DE REQUISICION', type: Number, })
+    fidCodRsc?: number;
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+    @IsString()
+    @IsOptional()
+    @ApiProperty({ description: 'IDENTIFICADOR DE CONTRATOS', type: String, })
+    fidCtoId?: string;
+    //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
 }
