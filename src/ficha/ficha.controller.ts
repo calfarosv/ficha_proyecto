@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, UseGuards } from '@nestjs/common';
 import { ApiHeader, ApiTags } from '@nestjs/swagger';
 import { Create_Pri_Fic_Dto } from './dto/create_pri_fic_dto';
 import { Create_Pri_Fid_Dto } from './dto/create_pri_fid_dto';
@@ -7,6 +7,10 @@ import { Edit_Pri_Fic_Dto } from './dto/edit_pri_fic_dto';
 import { Edit_Pri_Fid_Dto } from './dto/edit_pri_fid_dto';
 import { Edit_Pri_Usu_Dto } from './dto/edit_pri_usu_dto';
 import { FichaService } from './ficha.service';
+import { JwtAuthGuard } from './../auth/jwt-auth.guard'; //++ authenticacion
+//+++
+@UseGuards(JwtAuthGuard)
+//+++
 
 @ApiTags('Ficha')
 @Controller('ficha')

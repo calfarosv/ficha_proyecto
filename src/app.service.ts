@@ -3,6 +3,9 @@ import { Injectable } from '@nestjs/common';
 @Injectable()
 export class AppService {
   getHello(): string {
-    return 'Bienvenidos a SISPRI';
+    return 'Hello World!';
+  }
+  getElAutor(): string {
+    return 'Autor: Cesar Alfaro';
   }
 }

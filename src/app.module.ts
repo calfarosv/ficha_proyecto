@@ -35,7 +35,7 @@ import { Pri_Prc_Procesos_Cont_V_Entity } from './ficha/entities/pri_prc_proceso
   imports: [AuthModule,UsersModule,
     TypeOrmModule.forRoot({
       type: 'oracle',
-      connectString: 'desa.cel.gob.sv:1521/DESA',
+      connectString: '192.168.1.9:1521/OBELIX',
       port: 1521,
       username: 'WSISPRI',
       password: '4pl1c4c10n3sw3b',

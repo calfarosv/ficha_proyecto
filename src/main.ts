@@ -1,14 +1,14 @@
-/*
+
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import * as fs from 'fs';
 import { AppModule } from './app.module';
 import { initSwagger } from './app.swagger';
 
-//const crPath = '/opt/nodejscert/server.cert';
-//const pkPath = '/opt/nodejscert/server.key';
-const crPath = 'server.cert';
-const pkPath = 'server.key';
+const crPath = '/opt/nodejscert/server.cert';
+const pkPath = '/opt/nodejscert/server.key';
+//const crPath = 'server.cert';
+//const pkPath = 'server.key';
 let httpsOptions: any = {};
 
 async function bootstrap() {
@@ -29,16 +29,17 @@ async function bootstrap() {
   );
 
   app.enableCors();
-  await app.listen(3002);
+  await app.listen(3008);
 }
 bootstrap();
-*/
 
+/*
 import { initSwagger } from './app.swagger';
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 
+let httpsOptions: any = {};
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   
@@ -53,3 +54,4 @@ async function bootstrap() {
   await app.listen(3008);
 }
 bootstrap();
+*/

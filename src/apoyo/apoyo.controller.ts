@@ -1,6 +1,10 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, UseGuards } from '@nestjs/common';
 import { ApiHeader, ApiTags } from '@nestjs/swagger';
 import { ApoyoService } from './apoyo.service';
+import { JwtAuthGuard } from './../auth/jwt-auth.guard'; //++ authenticacion
+//+++
+@UseGuards(JwtAuthGuard)
+//+++
 
 @ApiTags('Apoyo')
 @Controller('apoyo')
