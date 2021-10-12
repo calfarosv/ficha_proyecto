@@ -29,7 +29,9 @@ async function bootstrap() {
   );
 
   app.enableCors();
-  await app.listen(3008);
+  //await app.listen(3008);
+  await app.listen(3008, '127.0.0.1');
+
 }
 bootstrap();
 
