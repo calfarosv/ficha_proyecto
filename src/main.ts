@@ -1,4 +1,3 @@
-/*
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import * as fs from 'fs';
@@ -29,13 +28,13 @@ async function bootstrap() {
   );
 
   app.enableCors();
-  //await app.listen(3008);
-  await app.listen(3008, '127.0.0.1');
+  await app.listen(3008);
+  //await app.listen(3008, '127.0.0.1');
 
 }
 bootstrap();
-*/
 
+/*
 import { initSwagger } from './app.swagger';
 import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
@@ -57,3 +56,4 @@ async function bootstrap() {
   await app.listen(3008, '127.0.0.1');
 }
 bootstrap();
+*/
